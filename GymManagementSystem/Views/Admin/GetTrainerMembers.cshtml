@@ -1,0 +1,48 @@
+﻿@model IEnumerable<GymManagementSystem.Models.Member>
+
+    <h4>@ViewBag.TrainerName</h4>
+    <h6>CONTACT: @ViewBag.Contact</h6>
+    <h6>SALARY: @ViewBag.Salary</h6>
+    <h6>MEMBERS: @ViewBag.Count</h6>
+    <br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.User.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JoinDate)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.ExpiryDate )
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Membership.MembershipName)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.JoinDate)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExpiryDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Membership.MembershipName)
+                </td>
+
+                
+            </tr>
+        }
+    </tbody>
+</table>

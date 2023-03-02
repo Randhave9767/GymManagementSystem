@@ -1,0 +1,47 @@
+﻿@model IEnumerable<GymManagementSystem.Models.Trainer>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<a class="btn btn-outline-primary" asp-area="" asp-controller="Admin" asp-action="AddTrainer">AddTrainer</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.User.FullName)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.JoiningDate )
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User.MobileNo)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.FullName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.JoiningDate, "{0:dd/MM/yyyy}")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.MobileNo)
+                </td>
+
+                <td>
+                    <a  asp-action="GetTrainerMembers" asp-route-id="@item.Id">Details</a> 
+
+                    <a  asp-controller="Trainers" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
