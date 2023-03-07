@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $.ajax({
+                type: "GET",
+                url: "https://localhost:7298/api/MembershipTypesApi/"+ @ViewBag.id,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+
+                   
+                    $("#MemberList").empty();
+
+                   
+                    console.log(response);
+
+                    $('#membershipName').append(response.membershipName);
+                    $('#fee').append(response.fee);
+                    $('#description').append(response.description);
+                    
+
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                    alert("Failure");
+                },
+                error: function (response) {
+                    alert(response);
+                    alert("Error");
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+
+</body>
+</html>
+
+
+<h1>Details</h1>
+
+<div>
+    <h4>MembershipType</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Membership
+        </dt>
+        <dd class = "col-sm-10" id="membershipName">
+           
+        </dd>
+        <dt class = "col-sm-2">
+            Fee
+        </dt>
+        <dd class = "col-sm-10" id="fee">
+            
+        </dd>
+        <dt class = "col-sm-2">
+            Description
+        </dt>
+        <dd class = "col-sm-10" id="description">
+           
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

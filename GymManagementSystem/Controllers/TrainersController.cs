@@ -170,7 +170,7 @@ namespace GymManagementSystem.Controllers
                 return View() ;
             }
            
-            return RedirectToAction( "GetTrainer", "Admin");
+            return RedirectToAction( "GetTrainers", "Admin");
         }
 
         private bool TrainerExists(int id)

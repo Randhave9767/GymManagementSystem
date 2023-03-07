@@ -2,8 +2,12 @@ using Microsoft.EntityFrameworkCore;
 using GymManagementSystem.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using GymManagementSystem.Controllers;
+using Newtonsoft.Json.Serialization;
+
 
 var builder = WebApplication.CreateBuilder(args);
+
+//builder.Services.AddMvcCore().AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
