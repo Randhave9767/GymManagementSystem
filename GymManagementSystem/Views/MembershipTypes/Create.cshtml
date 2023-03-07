@@ -1,0 +1,123 @@
+﻿@model GymManagementSystem.Models.MembershipType
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    
+
+
+    <script type="text/javascript">
+         $(document).ready(function () {
+             $("#Save").click(function () {
+
+                         var membershipType = new Object();
+                membershipType.membershipName = $('#name').val();
+                membershipType.fee = $('#fee').val();
+                membershipType.description = $('#desc').val();
+               
+                 $.ajax({
+                    url: 'https://localhost:7298/api/MembershipTypesApi',
+                     type: 'POST',
+                     contentType: 'application/json',
+                    dataType: 'json',
+                    data: JSON.stringify(membershipType),
+                     success: function (data, textStatus, xhr) {
+                         console.log(data);
+                        var url = '@Url.Action("Index", "MembershipTypes")';
+                        window.location.href = url;
+                     },
+                     error: function (response) {
+                         console.log('Error in Operation' + response.responseText);
+                         console.log(membershipType.membershipName);
+                         console.log(membershipType.fee);
+                        console.log(membershipType.description);
+                         
+                     }
+                 });
+             });
+         });
+    </script>
+</head>
+<body>
+    @*<form id="form1">
+        Name :- <input type="text" name="name" id="name" />
+        Fee :- <input type="text" name="fee" id="fee" />
+        Description:- <input type="text" name="desc" id="desc" />
+        <input type="button" id="Save" value="Save Data" />
+    </form>*@
+
+    <div class="row">
+        <div class="col-md-4">
+            <form>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="MembershipName" class="control-label"></label>
+                    <input asp-for="MembershipName" class="form-control" name="name" id="name" />
+                    <span asp-validation-for="MembershipName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Fee" class="control-label"></label>
+                    <input asp-for="Fee" class="form-control" name="fee" id="fee" />
+                    <span asp-validation-for="Fee" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description" class="control-label"></label>
+                    <input asp-for="Description" class="form-control" name="desc" id="desc" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary"  id="Save"/>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+</body>
+</html>
+
+@*@model GymManagementSystem.Models.MembershipType
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>MembershipType</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="MembershipName" class="control-label"></label>
+                <input asp-for="MembershipName" class="form-control" />
+                <span asp-validation-for="MembershipName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fee" class="control-label"></label>
+                <input asp-for="Fee" class="form-control" />
+                <span asp-validation-for="Fee" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+*@
