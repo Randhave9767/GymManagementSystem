@@ -4,44 +4,184 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 
-<h4>Member</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="UserId" class="control-label"></label>
-                <select asp-for="UserId" class ="form-control" asp-items="ViewBag.UserId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="TrainerId" class="control-label"></label>
-                <select asp-for="TrainerId" class ="form-control" asp-items="ViewBag.TrainerId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="MembershipId" class="control-label"></label>
-                <select asp-for="MembershipId" class ="form-control" asp-items="ViewBag.MembershipId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="JoinDate" class="control-label"></label>
-                <input asp-for="JoinDate" class="form-control" />
-                <span asp-validation-for="JoinDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ExpiryDate" class="control-label"></label>
-                <input asp-for="ExpiryDate" class="form-control" />
-                <span asp-validation-for="ExpiryDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+
+
+    <script type="text/javascript">
+        $.ajax({
+            type: "GET",
+            url: "https://localhost:7298/api/UsersApi",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+
+                
+
+                var list = ""
+                for (i = 0; i < response.length; ++i) {
+                    list += "<option value=" + response[i].id + ">" + response[i].fullName + "</option>";
+
+                }
+
+                $('#userId').append(list);
+            },
+            failure: function (response) {
+                alert(response.responseText);
+                alert("Failure");
+            },
+            error: function (response) {
+                alert(response);
+                alert("Error");
+            }
+        });
+
+        $.ajax({
+            type: "GET",
+            url: "https://localhost:7298/api/TrainersApi",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+
+               
+
+                var list = ""
+                for (i = 0; i < response.length; ++i) {
+                    list += "<option value=" + response[i].id + ">" + response[i].user.fullName + "</option>";
+
+                }
+
+                $('#trainerId').append(list);
+            },
+            failure: function (response) {
+                alert(response.responseText);
+                alert("Failure");
+            },
+            error: function (response) {
+                alert(response);
+                alert("Error");
+            }
+        });
+        $(document).ready(function () {
+
+            $.ajax({
+                type: "GET",
+                url: "https://localhost:7298/api/MembershipTypesApi",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    
+                    console.log(response[0].id +" "+ response[0].membershipName)
+
+                    var list =""
+                     for (i = 0; i < response.length; ++i) {
+                        list += "<option value=" + response[i].id + ">" + response[i].membershipName + "</option>";
+
+                    }
+                    
+                    $('#membershipId').append(list);
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                    alert("Failure");
+                },
+                error: function (response) {
+                    alert(response);
+                    alert("Error");
+                }
+            });
+        
+
+           
+
+
+            $("#Save").click(function () {
+
+                var member = new Object();
+                member.userId = $('#userId').val();
+                member.trainerId = $('#trainerId').val();
+                member.membershipId = $('#membershipId').val();
+                member.joinDate = $('#joinDate').val();
+                member.expiryDate = $('#expiryDate').val();
+
+                
+
+                $.ajax({
+                    url: 'https://localhost:7298/api/MembersApi',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    data: JSON.stringify(member),
+                    success: function (data, textStatus, xhr) {
+                        console.log(data);
+                        var url = '@Url.Action("Index", "Members")';
+                        window.location.href = url;
+                    },
+                    error: function (response) {
+                        console.log('Error in Operation' + response.responseText);
+                        console.log(membershipType.membershipName);
+                        console.log(membershipType.fee);
+                        console.log(membershipType.description);
+
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>Create</h1>
+
+    <h4>Member</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                @*<div class="form-group">
+                    <label asp-for="UserId" class="control-label"></label>
+                    <select asp-for="UserId" class="form-control"  id="userId"></select>
+                </div>*@
+                <div>
+                    <input type="hidden" asp-for="UserId" class="form-control" id="userId" value="@ViewBag.userId" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="TrainerId" class="control-label"></label>
+                    <select asp-for="TrainerId" class="form-control"  id="trainerId"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="MembershipId" class="control-label"></label>
+                    <select asp-for="MembershipId" class="form-control"  id="membershipId"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="JoinDate" class="control-label"></label>
+                    <input asp-for="JoinDate" class="form-control" id="joinDate"/>
+                    <span asp-validation-for="JoinDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ExpiryDate" class="control-label"></label>
+                    <input asp-for="ExpiryDate" class="form-control"  id="expiryDate"/>
+                    <span asp-validation-for="ExpiryDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" id="Save"/>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+</body>
+</html>
+
+
+
+
+
 

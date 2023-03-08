@@ -21,58 +21,44 @@ namespace GymManagementSystem.Controllers
         // GET: Members
         public async Task<IActionResult> Index()
         {
-            var gymDatabaseContext = _context.Members.Include(m => m.Membership).Include(m => m.Trainer).Include(m => m.User);
-            return View(await gymDatabaseContext.ToListAsync());
+             return View();
         }
 
         // GET: Members/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Members == null)
-            {
-                return NotFound();
-            }
-
-            var member = await _context.Members
-                .Include(m => m.Membership)
-                .Include(m => m.Trainer)
-                .Include(m => m.User)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (member == null)
-            {
-                return NotFound();
-            }
-
-            return View(member);
+            ViewBag.id = id;
+            return View();
         }
 
         // GET: Members/Create
-        public IActionResult Create()
+        public IActionResult Create(int? id)
         {
-            ViewData["MembershipId"] = new SelectList(_context.MembershipTypes, "Id", "Id");
-            ViewData["TrainerId"] = new SelectList(_context.Trainers, "Id", "Id");
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id");
+            ViewBag.userId = id;
+            //ViewData["MembershipId"] = new SelectList(_context.MembershipTypes, "Id", "Id");
+           // ViewData["TrainerId"] = new SelectList(_context.Trainers, "Id", "Id");
+           // ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id");
             return View();
         }
 
         // POST: Members/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,UserId,TrainerId,MembershipId,JoinDate,ExpiryDate")] Member member)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(member);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["MembershipId"] = new SelectList(_context.MembershipTypes, "Id", "Id", member.MembershipId);
-            ViewData["TrainerId"] = new SelectList(_context.Trainers, "Id", "Id", member.TrainerId);
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", member.UserId);
-            return View(member);
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Create([Bind("Id,UserId,TrainerId,MembershipId,JoinDate,ExpiryDate")] Member member)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        _context.Add(member);
+        //        await _context.SaveChangesAsync();
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    ViewData["MembershipId"] = new SelectList(_context.MembershipTypes, "Id", "Id", member.MembershipId);
+        //    ViewData["TrainerId"] = new SelectList(_context.Trainers, "Id", "Id", member.TrainerId);
+        //    ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", member.UserId);
+        //    return View(member);
+        //}
 
         // GET: Members/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -134,42 +120,28 @@ namespace GymManagementSystem.Controllers
         // GET: Members/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Members == null)
-            {
-                return NotFound();
-            }
-
-            var member = await _context.Members
-                .Include(m => m.Membership)
-                .Include(m => m.Trainer)
-                .Include(m => m.User)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (member == null)
-            {
-                return NotFound();
-            }
-
-            return View(member);
+            ViewBag.id = id;
+            return View();
         }
 
         // POST: Members/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            if (_context.Members == null)
-            {
-                return Problem("Entity set 'GymDatabaseContext.Members'  is null.");
-            }
-            var member = await _context.Members.FindAsync(id);
-            if (member != null)
-            {
-                _context.Members.Remove(member);
-            }
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> DeleteConfirmed(int id)
+        //{
+        //    if (_context.Members == null)
+        //    {
+        //        return Problem("Entity set 'GymDatabaseContext.Members'  is null.");
+        //    }
+        //    var member = await _context.Members.FindAsync(id);
+        //    if (member != null)
+        //    {
+        //        _context.Members.Remove(member);
+        //    }
             
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+        //    await _context.SaveChangesAsync();
+        //    return RedirectToAction(nameof(Index));
+        //}
 
         private bool MemberExists(int id)
         {
