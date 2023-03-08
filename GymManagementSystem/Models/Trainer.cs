@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace GymManagementSystem.Models;
 
@@ -10,8 +9,6 @@ public partial class Trainer
 
     public int? UserId { get; set; }
 
-    [DataType(DataType.Date)]
-    [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
     public DateTime? JoiningDate { get; set; }
 
     public string? Salary { get; set; }

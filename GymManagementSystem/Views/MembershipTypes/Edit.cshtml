@@ -26,9 +26,7 @@
                     $('#description').val(response.description);
 
                         console.log(response.description);
-                    //console.log(response);
-   
-
+                    
                 },
                 failure: function (response) {
                     alert(response.responseText);
@@ -75,12 +73,13 @@
             })
            
         });
-
-
        
     </script>
 </head>
 <body>
+    <h2>Update Membership:</h2>
+    <br />
+    <hr />
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <input type="hidden" asp-for="Id" />
     <div class="form-group">
@@ -98,9 +97,12 @@
         <input asp-for="Description" class="form-control" id="description"/>
         <span asp-validation-for="Description" class="text-danger"></span>
     </div>
+    <br />
     <div class="form-group">
-        <input type="submit" value="Save" class="btn btn-primary" id="Save"/>
+        <input type="submit" value="Update" class="btn btn-success" id="Save" />
     </div>
+    <hr />
+    <div><a asp-action="Index" class="btn btn-outline-primary">Back to List</a></div>
 </body>
 </html>
 

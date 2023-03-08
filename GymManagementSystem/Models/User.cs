@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using GymManagementSystem.Models;
-using Microsoft.EntityFrameworkCore;
 
 namespace GymManagementSystem.Models;
 
@@ -21,5 +19,3 @@ public partial class User
 
     public virtual ICollection<Trainer> Trainers { get; } = new List<Trainer>();
 }
-
-
