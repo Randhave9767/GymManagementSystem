@@ -1,0 +1,72 @@
+﻿@model GymManagementSystem.Models.Equipment
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head runat="server">
+    <title></title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#Save").click(function () {
+
+                var equip = new Object();
+                equip.EquipmentName = $('#EquipmentName').val();
+                equip.Quantity = $('#Quantity').val();
+
+                $.ajax({
+                    url: 'https://localhost:7298/api/EquipmentsApi',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    data: JSON.stringify(equip),
+                    success: function (data, textStatus, xhr) {
+                       
+                        var url = '@Url.Action("Index", "Equipments")';
+                        window.location.href = url;
+                        console.log(data);
+                    },
+                    error: function (response) {
+                        console.log('Error in Operation' + response.responseText);
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+
+    <h2>Add an new equipment here:</h2>
+    <br/>
+    <hr/>
+    <div class="row">
+        <div class="col-md-4">
+            <form>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="EquipmentName" class="control-label"></label>
+                    <input asp-for="EquipmentName" class="form-control" name="EquipmentName" id="EquipmentName" />
+                    <span asp-validation-for="EquipmentName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Quantity" class="control-label"></label>
+                    <input asp-for="Quantity" class="form-control" name="Quantity" id="Quantity" />
+                    <span asp-validation-for="Quantity" class="text-danger"></span>
+                </div>
+                <br/>
+                
+                <div class="form-group">
+                    <input type="submit" value="Add" class="btn btn-success" id="Save" />
+                </div>
+            </form>
+        </div>
+    </div>
+    <hr/>
+    <div>
+        <a asp-action="Index" class="btn btn-outline-primary">Back to List</a>
+    </div>
+</body>
+</html>
+
+

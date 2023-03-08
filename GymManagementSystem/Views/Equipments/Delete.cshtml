@@ -1,4 +1,4 @@
-﻿@model GymManagementSystem.Models.MembershipType
+﻿@model GymManagementSystem.Models.Equipment
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -7,25 +7,25 @@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 
 
-
     <script type="text/javascript">
         $(document).ready(function () {
             $("#Save").click(function () {
 
                 $.ajax({
-                    url: 'https://localhost:7298/api/MembershipTypesApi/'+@ViewBag.id,
+                    url: 'https://localhost:7298/api/EquipmentsApi/' + @ViewBag.id,
                     type: 'Delete',
                     contentType: 'application/json',
                     dataType: 'json',
-                    
+
                     success: function (data, textStatus, xhr) {
                         console.log(data);
-                        var url = '@Url.Action("Index", "MembershipTypes")';
+                        var url = '@Url.Action("Index", "Equipments")';
                         window.location.href = url;
                     },
                     error: function (response) {
                         console.log('Error in Operation' + response.responseText);
-                     
+
+
                     }
                 });
             });
@@ -33,16 +33,17 @@
     </script>
 </head>
 <body>
-    <h1>Delete Membership</h1>
+    <h1>Delete Equipment</h1>
 
     <h3>Are you sure you want to delete this?</h3>
-
-    <hr />
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" id="Save" />
-        <a asp-action="Index" class="btn btn-outline-primary">Back to List</a>
-    </form>
+        
+        <hr />
+        
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="EquipmentId" />
+            <input type="submit" value="Delete" class="btn btn-danger" id="Save" />
+            <a asp-action="Index" class="btn btn-outline-primary">Back to List</a>
+        </form>
 </body>
 </html>
 

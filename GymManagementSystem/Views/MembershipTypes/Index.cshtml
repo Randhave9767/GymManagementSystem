@@ -33,13 +33,13 @@
                     //Generic loop to iterate the response arrays.
                     for (i = 0; i < response.length; ++i) {
                        // ListValue += "<li>" + response[i].membershipName + " --- " + response[i].fee+" ----" + response[i].description
-                        ListValue += '<tr><td>' + response[i].membershipName + '</td><td>' + response[i].fee + '</td><td>' + response[i].description + '</td><td>' + '<a href="MembershipTypes/Edit/' + response[i].id + '">Edit</a>' + '</td><td>' + '<a href="MembershipTypes/Delete/' + response[i].id + '">Delete</a>' + '</td><td>' + '<a href="MembershipTypes/Details/' + response[i].id + '">Details</a>' + '</td ></tr >'
+                        ListValue += '<tr><td>' + response[i].membershipName + '</td><td>' + response[i].fee + '</td><td>' + response[i].description + '</td><td>' + '<a href="MembershipTypes/Edit/' + response[i].id + '" class="btn btn-secondary">Edit</a>' + '</td><td>' + '<a href="MembershipTypes/Delete/' + response[i].id + '" class="btn btn-secondary">Delete</a>' + '</td><td>' + '<a href="MembershipTypes/Details/' + response[i].id + '" class="btn btn-secondary">Details</a>' + '</td ></tr >'
                     
                     
                     }
 
                     //Add/Append the formatted values of ListValue variable into ID called "MemberList"
-                    //$("#MemberList").append(ListValue);
+                    
                     $("#tbody").append(ListValue);
 
                 },
@@ -48,7 +48,7 @@
                     alert("Failure");
                 },
                 error: function (response) {
-                    alert(response);
+                    alert(response.responseText);
                     alert("Error");
                 }
             });
@@ -67,12 +67,12 @@
 @{
     ViewData["Title"] = "Index";
 }
-
-
-
+<h2>Membership Dashboard</h2>
+<br />
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-info">Add new membership</a>
 </p>
+<br />
 <table class="table">
     <thead>
         <tr>
@@ -90,24 +90,6 @@
             <th></th>
         </tr>
     </thead>
-    <tbody id = "tbody">@*
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.MembershipName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fee)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}*@
+    <tbody id = "tbody">
     </tbody>
 </table>
