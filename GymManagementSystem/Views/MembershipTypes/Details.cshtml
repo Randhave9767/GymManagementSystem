@@ -15,17 +15,10 @@
                 dataType: "json",
                 success: function (response) {
 
-                   
-                    $("#MemberList").empty();
-
-                   
-                    console.log(response);
-
                     $('#membershipName').append(response.membershipName);
                     $('#fee').append(response.fee);
                     $('#description').append(response.description);
                     
-
                 },
                 failure: function (response) {
                     alert(response.responseText);
@@ -45,7 +38,7 @@
 </html>
 
 
-<h1>Details</h1>
+<h1>Membership Details</h1>
 
 <div>
     <h4>MembershipType</h4>
@@ -71,7 +64,7 @@
         </dd>
     </dl>
 </div>
+<hr />
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" class="btn btn-outline-primary">Back to List</a>
 </div>

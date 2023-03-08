@@ -24,23 +24,6 @@ namespace GymManagementSystem.Controllers
               return View();
         }
 
-        // GET: Equipments/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || _context.Equipment == null)
-            {
-                return NotFound();
-            }
-
-            var equipment = await _context.Equipment
-                .FirstOrDefaultAsync(m => m.EquipmentId == id);
-            if (equipment == null)
-            {
-                return NotFound();
-            }
-
-            return View(equipment);
-        }
 
 
         // GET: Equipments/Create
@@ -69,91 +52,97 @@ namespace GymManagementSystem.Controllers
         // GET: Equipments/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Equipment == null)
-            {
-                return NotFound();
-            }
+            //if (id == null || _context.Equipment == null)
+            //{
+            //    return NotFound();
+            //}
 
-            var equipment = await _context.Equipment.FindAsync(id);
-            if (equipment == null)
-            {
-                return NotFound();
-            }
-            return View(equipment);
+            //var equipment = await _context.Equipment.FindAsync(id);
+            //if (equipment == null)
+            //{
+            //    return NotFound();
+            //}
+            //return View(equipment);
+
+            ViewBag.id = id;
+            return View();
         }
 
 
         // POST: Equipments/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EquipmentId,EquipmentName,Quantity")] Equipment equipment)
-        {
-            if (id != equipment.EquipmentId)
-            {
-                return NotFound();
-            }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Edit(int id, [Bind("EquipmentId,EquipmentName,Quantity")] Equipment equipment)
+        //{
+        //    if (id != equipment.EquipmentId)
+        //    {
+        //        return NotFound();
+        //    }
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(equipment);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!EquipmentExists(equipment.EquipmentId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(equipment);
-        }
+        //    if (ModelState.IsValid)
+        //    {
+        //        try
+        //        {
+        //            _context.Update(equipment);
+        //            await _context.SaveChangesAsync();
+        //        }
+        //        catch (DbUpdateConcurrencyException)
+        //        {
+        //            if (!EquipmentExists(equipment.EquipmentId))
+        //            {
+        //                return NotFound();
+        //            }
+        //            else
+        //            {
+        //                throw;
+        //            }
+        //        }
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    return View(equipment);
+        //}
 
 
         // GET: Equipments/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Equipment == null)
-            {
-                return NotFound();
-            }
+            //if (id == null || _context.Equipment == null)
+            //{
+            //    return NotFound();
+            //}
 
-            var equipment = await _context.Equipment
-                .FirstOrDefaultAsync(m => m.EquipmentId == id);
-            if (equipment == null)
-            {
-                return NotFound();
-            }
+            //var equipment = await _context.Equipment
+            //    .FirstOrDefaultAsync(m => m.EquipmentId == id);
+            //if (equipment == null)
+            //{
+            //    return NotFound();
+            //}
 
-            return View(equipment);
+            //return View(equipment);
+
+            ViewBag.id = id;
+            return View();
         }
 
 
         // POST: Equipments/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            if (_context.Equipment == null)
-            {
-                return Problem("Entity set 'GymDatabaseContext.Equipment'  is null.");
-            }
-            var equipment = await _context.Equipment.FindAsync(id);
-            if (equipment != null)
-            {
-                _context.Equipment.Remove(equipment);
-            }
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> DeleteConfirmed(int id)
+        //{
+        //    if (_context.Equipment == null)
+        //    {
+        //        return Problem("Entity set 'GymDatabaseContext.Equipment'  is null.");
+        //    }
+        //    var equipment = await _context.Equipment.FindAsync(id);
+        //    if (equipment != null)
+        //    {
+        //        _context.Equipment.Remove(equipment);
+        //    }
             
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+        //    await _context.SaveChangesAsync();
+        //    return RedirectToAction(nameof(Index));
+        //}
 
         private bool EquipmentExists(int id)
         {

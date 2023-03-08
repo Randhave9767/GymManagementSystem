@@ -15,12 +15,6 @@
                 dataType: "json",
                 success: function (response) {
 
-                    //Clear all previous list of members
-                   // $("#MemberList").empty();
-
-                    //Display Asp.Net Web API response in console log
-                    //You can see console log value in developer tool
-                    //by pressing F12 function key.
                     console.log(response);
 
                     //Variable created to store <li>Memeber Detail</li>
@@ -32,28 +26,27 @@
                     //Generic loop to iterate the response arrays.
                     for (i = 0; i < response.length; ++i) {
                        // ListValue += "<tr><td>" + response[i].equipmentName + "</td><td>" + response[i].quantity + "</td></tr > "
-                        ListValue += '<tr><td>' + response[i].equipmentName + '</td><td>' + response[i].quantity + '</td><td>' + '<a href="Equipments/Edit/' + response[i].equipmentId + '">Edit</a>' + '</td><td>' + '<a href="Equipments/Delete/' + response[i].equipmentId + '">Delete</a>' + '</td ></tr >'
+                        ListValue += '<tr><td>' + response[i].equipmentName + '</td><td>' + response[i].quantity + '</td><td>' + '<a href="Equipments/Edit/' + response[i].equipmentId + '" class="btn btn-secondary">Edit</a>' + '</td><td>'+'<a href="Equipments/Delete/' + response[i].equipmentId + '" class="btn btn-secondary">Delete</a>' + '</td ></tr >'
                     }
 
                     //Add/Append the formatted values of ListValue variable into ID called "MemberList"
-                    //$("#MemberList").append(ListValue);
                     $("#tbody").append(ListValue);
 
-                },
-                failure: function (response) {
-                    alert(response.responseText);
-                    alert("Failure");
-                },
-                error: function (response) {
-                    alert(response);
-                    alert("Error");
-                }
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                        alert("Failure");
+                    },
+                    error: function (response) {
+                        alert(response);
+                        alert("Error");
+                    }
             });
         });
     </script>
-</head>
-<body>
-</body>
+    </head>
+    <body>
+    </body>
 </html>
 
 @model IEnumerable<GymManagementSystem.Models.Equipment>
@@ -61,10 +54,12 @@
 @{
     ViewData["Title"] = "Index";
 }
-<h1>Index</h1>
+<h2>Equipment Dashboard</h2>
+<br />
 <p>
-    <a asp-action="Create">Add an Equipment</a>
+    <a asp-action="Create" class="btn btn-info">Add an Equipment</a>
 </p>
+<br />
 <table class="table">
     <thead>
         <tr>
