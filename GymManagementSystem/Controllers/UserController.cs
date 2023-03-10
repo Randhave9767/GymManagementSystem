@@ -16,8 +16,10 @@ namespace GymManagementSystem.Controllers
         }
         public IActionResult Index(int id)
         {
-            User u = _context.Users.FirstOrDefault(x => x.Id == id );
-            return View(u);
+            //User u = _context.Users.FirstOrDefault(x => x.Id == id );
+            //return View(u);
+            ViewBag.Id = id;
+            return View();
         }
     }
 }

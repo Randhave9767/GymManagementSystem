@@ -1,9 +1,13 @@
 ﻿@model IEnumerable<GymManagementSystem.Models.Member>
-
-    <h4>@ViewBag.TrainerName</h4>
+    <h2 class="text-decoration-underline">Trainer Details</h2>
+    <br />
+    <h4>Name: @ViewBag.TrainerName</h4>
     <h6>CONTACT: @ViewBag.Contact</h6>
-    <h6>SALARY: @ViewBag.Salary</h6>
+    <h6>SALARY: Rs. @ViewBag.Salary</h6>
+    <br />
+    <h5 class="text-decoration-underline">Your Member Details:</h5>
     <h6>MEMBERS: @ViewBag.Count</h6>
+    
     <br />
 <table class="table">
     <thead>
@@ -46,3 +50,4 @@
         }
     </tbody>
 </table>
+<div><a asp-action="GetTrainers" class="btn btn-outline-primary">Back to List</a></div>
