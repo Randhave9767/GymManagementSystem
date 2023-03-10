@@ -18,7 +18,14 @@ namespace GymManagementSystem.Controllers
         }
         public async Task<IActionResult> IndexAsync()
         {
-            return View(await _context.Users.ToListAsync());
+            var userIds1 = _context.Trainers.Select(x => x.UserId).ToList();
+            var userIds2 = _context.Members.Select(x => x.UserId).ToList();
+            var userIds = userIds1.Union(userIds2);
+
+
+
+
+            return View(await _context.Users.Where(x => !(userIds.Contains(x.Id))).ToListAsync());
         }
 
 

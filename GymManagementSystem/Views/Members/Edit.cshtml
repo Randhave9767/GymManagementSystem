@@ -4,6 +4,145 @@
     ViewData["Title"] = "Edit";
 }
 
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+
+            var member = new Object();
+            member.id = @ViewBag.id;
+
+
+            $.ajax({
+                type: "GET",
+                url: "https://localhost:7298/api/TrainersApi",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+
+
+
+                    var list = ""
+                    for (i = 0; i < response.length; ++i) {
+                        list += "<option value=" + response[i].id + ">" + response[i].user.fullName + "</option>";
+
+                    }
+
+                    $('#trainerId').append(list);
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                    alert("Failure");
+                },
+                error: function (response) {
+                    alert(response);
+                    alert("Error");
+                }
+            });
+
+            $.ajax({
+                type: "GET",
+                url: "https://localhost:7298/api/MembershipTypesApi",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+
+                    console.log(response[0].id + " " + response[0].membershipName)
+
+                    var list = ""
+                    for (i = 0; i < response.length; ++i) {
+                        list += "<option value=" + response[i].id + ">" + response[i].membershipName + "</option>";
+
+                    }
+
+                    $('#membershipId').append(list);
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                    alert("Failure");
+                },
+                error: function (response) {
+                    alert(response);
+                    alert("Error");
+                }
+            });
+
+            $.ajax({
+                type: "GET",
+                url: "https://localhost:7298/api/MembersApi/" + @ViewBag.id,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    console.log(response.user.id);
+                    var userlist = "<option value=" + response.user.id + ">"+response.user.fullName+"</option>";
+                    $('#userId').append(userlist);
+                    //$('#membershipName').val(response.membershipName);
+                    //$('#fee').val(response.fee);
+                    //$('#description').val(response.description);
+
+                    console.log(response.description);
+
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                    alert("Failure");
+                },
+                error: function (response) {
+                    alert(response);
+                    alert("Error");
+                }
+            });
+
+            $("#Save").click(function () {
+                var member1 = new Object();
+                member1.id = @ViewBag.id;
+                member1.userId = @ViewBag.userId;
+                member1.trainerId = $('#trainerId').val();
+                member1.membershipId = $('#membershipId').val();
+                member1.joinDate = $('#joinDate').val();
+                member1.expiryDate = $('#expiryDate').val();
+
+
+                
+
+                $.ajax({
+                    type: "PUT",
+                    url: "https://localhost:7298/api/MembersApi/" + @ViewBag.id,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: JSON.stringify(member1),
+                    success: function (response) {
+                        console.log(response);
+                        //console.log(response);
+                        var url = '@Url.Action("Index", "MembershipTypes")';
+                        window.location.href = url;
+
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                        alert("Failure");
+                    },
+                    error: function (response) {
+                        alert(response);
+                        alert("Error in edit");
+                        console.log(response.responseText);
+                    }
+                });
+            })
+
+        });
+
+    </script>
+</head>
+<body>
+
 <h1>Edit</h1>
 
 <h4>Member</h4>
@@ -14,28 +153,28 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="UserId" class="control-label"></label>
-                <select asp-for="UserId" class="form-control" asp-items="ViewBag.UserId"></select>
+                <label asp-for="UserId" class="control-label">Name</label>
+                <select asp-for="UserId" class="form-control" id="userId"></select>
                 <span asp-validation-for="UserId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="TrainerId" class="control-label"></label>
-                <select asp-for="TrainerId" class="form-control" asp-items="ViewBag.TrainerId"></select>
+                <label asp-for="TrainerId" class="control-label">Trainer</label>
+                <select asp-for="TrainerId" class="form-control" id="trainerId"></select>
                 <span asp-validation-for="TrainerId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="MembershipId" class="control-label"></label>
-                <select asp-for="MembershipId" class="form-control" asp-items="ViewBag.MembershipId"></select>
+                    <select asp-for="MembershipId" class="form-control" id="membershipId"></select>
                 <span asp-validation-for="MembershipId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="JoinDate" class="control-label"></label>
-                <input asp-for="JoinDate" class="form-control" />
+                <input asp-for="JoinDate" class="form-control" id="joinDate"/>
                 <span asp-validation-for="JoinDate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ExpiryDate" class="control-label"></label>
-                <input asp-for="ExpiryDate" class="form-control" />
+                <input asp-for="ExpiryDate" class="form-control" id="expiryDate"/>
                 <span asp-validation-for="ExpiryDate" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -48,4 +187,7 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+
+</body>
+</html>
 

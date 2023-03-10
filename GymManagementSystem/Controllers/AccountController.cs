@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using GymManagementSystem.Models;
+using Microsoft.AspNetCore.Http;
+using NuGet.Protocol;
 
 namespace GymManagementSystem.Controllers
 {
@@ -52,6 +54,25 @@ namespace GymManagementSystem.Controllers
             if (_context.Users.Any(x => x.Username == username && x.Password == password))
             {
                 //User u1 =  _context.Users.FirstOrDefault(x=>x.Username == username && x.Password == password);
+                User u = _context.Users.FirstOrDefault(x => x.Username == username && x.Password == password);
+
+                if (_context.Trainers.Any(t=>t.UserId == u.Id ))
+                {
+                    Trainer t = _context.Trainers.Include(t=>t.User).Include(t=>t.Members).FirstOrDefault(t => t.UserId == u.Id);
+                    identity = new ClaimsIdentity(new[]
+                    {
+                        new Claim(ClaimTypes.Name, username),
+                        new Claim(ClaimTypes.Role, "trainer")
+                    },
+                    CookieAuthenticationDefaults.AuthenticationScheme);
+
+                    isAuthenticated = true;
+                    var principal1 = new ClaimsPrincipal(identity);
+                    var login1 = HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal1);
+                   
+
+                    return RedirectToAction("Index", "TrainerHome", new { id = t.Id });
+                }
 
                 identity = new ClaimsIdentity(new[]
                 {
@@ -63,7 +84,7 @@ namespace GymManagementSystem.Controllers
                 var principal = new ClaimsPrincipal(identity);
                 var login = HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
 
-                User u = _context.Users.FirstOrDefault(x => x.Username == username && x.Password == password);
+                this.HttpContext.Session.SetInt32("Id", u.Id);
                 return RedirectToAction("Index", "User", new { id = u.Id });
             }
 
@@ -103,6 +124,9 @@ namespace GymManagementSystem.Controllers
         public ActionResult Logout()
         {
             var login = HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+            
+
             return RedirectToAction("Login");
         }
     }
