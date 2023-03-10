@@ -1,0 +1,18 @@
+﻿body {
+    background-color: #93BFCF;
+}
+.form1 {
+    background-color: #ECF2FF;
+    /*border-radius: 10px;*/
+    border: 2px solid black;
+}
+.new_link{
+    margin-top:15px;
+    margin-left:8px;
+}
+.new_tag{
+    text-decoration:none;
+    font-weight:bold;
+    font-size:15px;
+    color:black;
+}

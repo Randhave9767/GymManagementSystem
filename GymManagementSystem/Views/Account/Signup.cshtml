@@ -1,15 +1,14 @@
-﻿@model GymManagementSystem.Models.User
+﻿
 
-@{
-    ViewData["Title"] = "Create";
-}
+@model GymManagementSystem.Models.User
 
-<h1>Create</h1>
+<link href="~/css/register.css" rel="stylesheet" type="text/css"/>
 
-<h4>User</h4>
-<hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-4 mx-auto form1">
+        <br />
+        <h3 class="text-center">Signup</h3>
+        <br/>
         <form asp-action="Signup">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -32,14 +31,13 @@
                 <input asp-for="MobileNo" class="form-control" />
                 <span asp-validation-for="MobileNo" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn btn-dark" />
+                <div class="new_link"><p>Already have an account <a asp-action="Login" class="new_tag">Login here</a></p></div>
             </div>
+            <br />
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 

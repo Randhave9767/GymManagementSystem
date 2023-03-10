@@ -4,7 +4,9 @@
     ViewData["Title"] = "Index";
 }
 
+<h2 class="text-decoration-underline">New Users:</h2>
 
+<br />
 <table class="table">
     <thead>
         <tr>
@@ -30,9 +32,10 @@
                     @Html.DisplayFor(modelItem => item.MobileNo)
                 </td>
                 <td>
-                    <a  asp-action="NewTrainer" asp-route-id="@item.Id">Add Trainer</a>
+                    <a class="btn btn-info" asp-action="NewTrainer" asp-route-id="@item.Id">Add Trainer</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+<div><a asp-action="GetTrainers" class="btn btn-outline-primary">Back to List</a></div>
