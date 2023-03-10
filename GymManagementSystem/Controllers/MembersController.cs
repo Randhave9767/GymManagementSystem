@@ -76,6 +76,7 @@ namespace GymManagementSystem.Controllers
             ViewData["MembershipId"] = new SelectList(_context.MembershipTypes, "Id", "Id", member.MembershipId);
             ViewData["TrainerId"] = new SelectList(_context.Trainers, "Id", "Id", member.TrainerId);
             ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", member.UserId);
+            ViewBag.id = id;
             return View(member);
         }
 

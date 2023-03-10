@@ -12,6 +12,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddSession();
+
 builder.Services.AddDbContext<GymDatabaseContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("Server=PSL-6957XM3;Database=GymDatabase;Trusted_Connection=True;Encrypt=false;"))
 
@@ -29,6 +32,8 @@ if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
 }
+
+app.UseSession();
 app.UseStaticFiles();
 
 app.UseRouting();
