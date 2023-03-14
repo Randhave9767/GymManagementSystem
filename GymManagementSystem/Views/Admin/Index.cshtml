@@ -1,17 +1,19 @@
 ﻿@model IEnumerable<GymManagementSystem.Models.User>
 
-@{
-    ViewData["Title"] = "Index";
-}
+<!DOCTYPE html>
 
-
+<html>
+<head>
+    <meta charset="utf-8" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+</head>
 <table class="table">
     <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.FullName)
             </th>
-           
+
             <th>
                 @Html.DisplayNameFor(model => model.MobileNo)
             </th>
@@ -25,12 +27,12 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.FullName)
                 </td>
-                
+
                 <td>
                     @Html.DisplayFor(modelItem => item.MobileNo)
                 </td>
                 <td>
-                    <a asp-controller="Members" asp-action="Create" asp-route-id="@item.Id">Add Member</a> | 
+                    <a asp-controller="Members" asp-action="Create" asp-route-id="@item.Id">Add Member</a> |
                     <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                     <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                 </td>
@@ -38,3 +40,20 @@
         }
     </tbody>
 </table>
+@section scripts{
+    <script type="text/javascript">
+        function preventBack() {
+            window.history.forward();
+        }
+        setTimeout("preventBack()", 0);
+        window.onload = function () { null };
+    </script>
+    }
+ <body> 
+ </body>
+ </html>
+ 
+
+
+
+

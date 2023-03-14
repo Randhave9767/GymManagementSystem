@@ -1,0 +1,99 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $.ajax({
+                type: "GET",
+                url: "https://localhost:7298/api/MembersApi/" + @ViewBag.memberId,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+
+
+
+
+
+                    console.log(response);
+                    $('#name').append(response.user.fullName);
+                    $('#contact').append(response.user.mobileNo);
+                    $('#membershipType').append(response.membership.membershipName);
+                    // $('#trainer').append(response.trainer.user.neme);
+                    $('#joinDate').append(response.joinDate);
+                    $('#expiryDate').append(response.expiryDate);
+
+
+
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                    alert("Failure");
+                },
+                error: function (response) {
+                    alert(response);
+                    alert("Error");
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div>
+        <h4>Member</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                Name
+            </dt>
+            <dd id="name" class="col-sm-10">
+
+            </dd>
+            <dt class="col-sm-2">
+                Contact
+            </dt>
+            <dd id="contact" class="col-sm-10">
+
+            </dd>
+            <dt class="col-sm-2">
+                Membership Type
+            </dt>
+            <dd id="membershipType" class="col-sm-10">
+
+            </dd>
+
+            <dt class="col-sm-2">
+                Join date
+            </dt>
+            <dd id="joinDate" class="col-sm-10">
+
+            </dd>
+            <dt class="col-sm-2">
+                Expiry date
+            </dt>
+            <dd id="expiryDate" class="col-sm-10">
+
+            </dd>
+            <dt class="col-sm-2">
+
+            </dt>
+            <dd id="joinDate" class="col-sm-10">
+
+            </dd>
+
+        </dl>
+    </div>
+    @*<div>
+        <a asp-action="Edit" asp-route-id="@ViewBag.Id">Edit</a> |
+        <a asp-action="Delete" asp-route-id="@ViewBag.Id">Delete</a> |
+        <a asp-action="Index">Back to List</a>
+    </div>*@
+</body>
+</html>
+
+

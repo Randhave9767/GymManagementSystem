@@ -62,6 +62,7 @@ namespace GymManagementSystem.Controllers
                     identity = new ClaimsIdentity(new[]
                     {
                         new Claim(ClaimTypes.Name, username),
+                       
                         new Claim(ClaimTypes.Role, "trainer")
                     },
                     CookieAuthenticationDefaults.AuthenticationScheme);
@@ -69,8 +70,8 @@ namespace GymManagementSystem.Controllers
                     isAuthenticated = true;
                     var principal1 = new ClaimsPrincipal(identity);
                     var login1 = HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal1);
-                   
 
+                    this.HttpContext.Session.SetInt32("Id", t.Id);
                     return RedirectToAction("Index", "TrainerHome", new { id = t.Id });
                 }
 
@@ -88,14 +89,7 @@ namespace GymManagementSystem.Controllers
                 return RedirectToAction("Index", "User", new { id = u.Id });
             }
 
-            /*if (isAuthenticated)
-            {
-                var principal = new ClaimsPrincipal(identity);
-                var login = HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
-
-                return RedirectToAction("Index", "Home");
-
-            }*/
+           
 
             ModelState.AddModelError("", "Invalid username or password");
             return View();
@@ -123,10 +117,16 @@ namespace GymManagementSystem.Controllers
         }
         public ActionResult Logout()
         {
-            var login = HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-
+            
+            return View();
             
 
+            
+        }
+
+        public ActionResult Logout2()
+        {
+            var login = HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Login");
         }
     }

@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GymManagementSystem.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace GymManagementSystem.Controllers
 {
@@ -19,6 +21,7 @@ namespace GymManagementSystem.Controllers
         }
 
         // GET: MembershipTypes
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Index()
         {
               
@@ -26,6 +29,7 @@ namespace GymManagementSystem.Controllers
         }
 
         // GET: MembershipTypes/Details/5
+        [Authorize(Roles = "admin,user")]
         public async Task<IActionResult> Details(int? id)
         {
             ViewBag.id = id;
@@ -34,14 +38,16 @@ namespace GymManagementSystem.Controllers
         }
 
         // GET: MembershipTypes/Create
+        [Authorize(Roles = "admin")]
         public IActionResult Create()
         {
             return View();
         }
 
-       
+
 
         // GET: MembershipTypes/Edit/5
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             ViewBag.id = id;
@@ -84,6 +90,7 @@ namespace GymManagementSystem.Controllers
         //}
 
         // GET: MembershipTypes/Delete/5
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             
@@ -107,11 +114,11 @@ namespace GymManagementSystem.Controllers
         //    {
         //        _context.MembershipTypes.Remove(membershipType);
         //    }
-            
+
         //    await _context.SaveChangesAsync();
         //    return RedirectToAction(nameof(Index));
         //}
-
+        [Authorize(Roles = "admin")]
         private bool MembershipTypeExists(int id)
         {
           return _context.MembershipTypes.Any(e => e.Id == id);

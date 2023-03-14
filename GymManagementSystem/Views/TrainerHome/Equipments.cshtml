@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $.ajax({
+                type: "GET",
+                url: "https://localhost:7298/api/EquipmentsApi",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+
+                    console.log(response);
+
+                    //Variable created to store <li>Memeber Detail</li>
+                    var ListValue = "";
+
+                    //Variable created to iterate the json array values.
+                    var i;
+
+                    //Generic loop to iterate the response arrays.
+                    for (i = 0; i < response.length; ++i) {
+                        // ListValue += "<tr><td>" + response[i].equipmentName + "</td><td>" + response[i].quantity + "</td></tr > "
+                        ListValue += '<tr><td>' + response[i].equipmentName + '</td><td>' + response[i].quantity   + '</td ></tr >'
+                    }
+
+                    //Add/Append the formatted values of ListValue variable into ID called "MemberList"
+                    $("#tbody").append(ListValue);
+
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                    alert("Failure");
+                },
+                error: function (response) {
+                    alert(response);
+                    alert("Error");
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+</body>
+</html>
+
+
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+               EquipmentName
+            </th>
+            <th>
+               Quantity
+            </th>
+           
+
+        </tr>
+    </thead>
+    <tbody id="tbody">
+    </tbody>
+</table>
+
+
+
+

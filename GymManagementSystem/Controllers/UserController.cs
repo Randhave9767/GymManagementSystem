@@ -14,6 +14,13 @@ namespace GymManagementSystem.Controllers
         {
             _context = context;
         }
+
+        public IActionResult Index2()
+        {
+            int Id = -1;
+            Id = (int)HttpContext.Session.GetInt32("Id");
+            return RedirectToAction("Index", new { id = Id });
+        }
         public IActionResult Index(int id)
         {
             int Id = -1;

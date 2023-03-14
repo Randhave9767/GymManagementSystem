@@ -1,9 +1,73 @@
-﻿@model GymManagementSystem.Models.Trainer
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@*@{
+    Layout = "_trainerLayout";
+}*@
 
-Hello @Model.User.FullName
-You are trainer
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $.ajax({
+                type: "GET",
+                url: "https://localhost:7298/api/TrainersApi/" + @ViewBag.id,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+
+                    console.log(response);
+                    $('#name').append(response.user.fullName);
+                    $('#salary').append(response.salary);
+                    $('#joiningDate').append(response.joiningDate);
+
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                    alert("Failure");
+                },
+                error: function (response) {
+                    alert(response);
+                    alert("Error");
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    @*<a asp-action="Create">Create</a>*@
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Salary
+                </th>
+                <th>
+                    Joining Date
+                </th>
+
+            </tr>
+        </thead>
+        <tbody id="tbody">
+            <td id="name">
+            </td>
+            <td id="salary">
+            </td>
+            <td id="joiningDate">
+            </td>
+
+
+        </tbody>
+    </table>
+</body>
+</html>
+
+
+
+

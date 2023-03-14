@@ -40,19 +40,45 @@
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Home</a>
                                 </li>
+                                <li class="nav-link text-dark" asp-area="">Hello-@User.Identity.Name</li>
+
+
+                                <li >@Html.ActionLink("Logout", "Logout", "Account", new { area = "" }, new { @class = "nav-link text-dark" })</li>
+
+                            }
+                            else if(User.IsInRole("trainer"))
+                            {
+                                 <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="TrainerHome" asp-action="Index" asp-route-id="@ViewBag.id">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="TrainerHome" asp-action="GetMembers" asp-route-id="@ViewBag.id">Members</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="TrainerHome" asp-action="Equipments" asp-route-id="@ViewBag.id">Equipments</a>
+                                </li>
+                                 <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="TrainerHome" asp-action="Memberships" asp-route-id="@ViewBag.id">Memberships</a>
+                                </li>
+                                <li class="nav-link text-dark" asp-area="">Hello-@User.Identity.Name</li>
+
+
+                            <li >@Html.ActionLink("Logout", "Logout2", "Account", new { area = "" }, new { @class = "nav-link text-dark" })</li>
+                       
                             }
                             else
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Index">Home</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Index2">Home</a>
                                 </li>
+                                <li class="nav-link text-dark" asp-area="">Hello-@User.Identity.Name</li>
+
+
+                            <li >@Html.ActionLink("Logout", "Logout2", "Account", new { area = "" }, new { @class = "nav-link text-dark" })</li>
+                       
                             }
 
-                            <li class="nav-link text-dark" asp-area="">Hello-@User.Identity.Name</li>
-
-
-                            <li >@Html.ActionLink("Logout", "Logout", "Account", new { area = "" }, new { @class = "nav-link text-dark" })</li>
-                        }
+                             }
                         else{
 
                             <li class="nav-item">
