@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Index";
 }
-<h2>Trainer Dashboard</h2>
+<h2 class="text-decoration-underline">Trainer Dashboard</h2>
 <br />
 <a class="btn btn-info" asp-area="" asp-controller="Admin" asp-action="AddTrainer">Add new Trainer</a>
 <br />
@@ -40,9 +40,9 @@
                 </td>
 
                 <td>
-                    <a asp-action="GetTrainerMembers" asp-route-id="@item.Id" class="btn btn-secondary">Details</a>
+                    <a asp-action="GetTrainerMembers" asp-route-id="@item.Id" class="btn btn-dark">Details</a>
 
-                    <a asp-controller="Trainers" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-secondary">Delete</a>
+                    <a asp-controller="Trainers" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
         }

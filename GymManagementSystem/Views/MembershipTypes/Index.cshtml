@@ -33,7 +33,7 @@
                     //Generic loop to iterate the response arrays.
                     for (i = 0; i < response.length; ++i) {
                        // ListValue += "<li>" + response[i].membershipName + " --- " + response[i].fee+" ----" + response[i].description
-                        ListValue += '<tr><td>' + response[i].membershipName + '</td><td>' + response[i].fee + '</td><td>' + response[i].description + '</td><td>' + '<a href="MembershipTypes/Edit/' + response[i].id + '" class="btn btn-secondary">Edit</a>' + '</td><td>' + '<a href="MembershipTypes/Delete/' + response[i].id + '" class="btn btn-secondary">Delete</a>' + '</td><td>' + '<a href="MembershipTypes/Details/' + response[i].id + '" class="btn btn-secondary">Details</a>' + '</td ></tr >'
+                        ListValue += '<tr><td>' + response[i].membershipName + '</td><td>' + response[i].fee + '</td><td>' + response[i].description + '</td><td>' + '<a href="MembershipTypes/Edit/' + response[i].id + '" class="btn btn-warning">Edit</a>' + '</td><td>' + '<a href="MembershipTypes/Delete/' + response[i].id + '" class="btn btn-danger">Delete</a>' + '</td><td>' + '<a href="MembershipTypes/Details/' + response[i].id + '" class="btn btn-dark">Details</a>' + '</td ></tr >'
                     
                     
                     }
@@ -67,7 +67,7 @@
 @{
     ViewData["Title"] = "Index";
 }
-<h2>Membership Dashboard</h2>
+<h2 class="text-decoration-underline">Membership Dashboard</h2>
 <br />
 <p>
     <a asp-action="Create" class="btn btn-info">Add new membership</a>

@@ -6,6 +6,8 @@
 <head>
     <title></title>
     <meta charset="utf-8" />
+
+    @*<link href="~/css/extra.css" rel="stylesheet" type="text/css" />*@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script type="text/javascript">
 
@@ -143,7 +145,11 @@
 </head>
 <body>
     <marquee class="bg-info fs-3">Welcome to MaxFitness... Fit body, fit mind, fit life..!!</marquee>
-    <div>
+    <br />
+    <br />
+    <h3 class="text-decoration-underline">Offers Available</h3>
+    <br />
+    @*<div>
         <table class="table">
             <thead>
                 <tr>
@@ -162,15 +168,39 @@
             <tbody id="tbody">
             </tbody>
         </table>
+    </div>*@
+
+
+
+    <div class="container">
+        <div class="col-md-8">
+            <div class="card-group">
+                <div class="card bg-light" style="width: auto; flex-direction:row">
+                    <div class="card-body">
+                        <table class="table table-borderless">
+                            <thead>
+                             <tr class="border-bottom">
+                                <th>MembershipName</th>
+                                <th>Fee</th>
+                                <th>Description</th>
+                            </tr>
+                            </thead>
+                            <tbody id="tbody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
     </div>
+</div>
+
     <br /><br />
     <div>
-        <h2 class="text-decoration-underline"> Your Details:</h2>
+        <h3 class="text-decoration-underline"> Your Details:</h3>
         <br />
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-6">
-                    <table class="table table-bordered">
+                    <table class="table table-bordered bg-light">
                         <tbody>
                             <tr>
                                 <th scope="row">FullName</th>

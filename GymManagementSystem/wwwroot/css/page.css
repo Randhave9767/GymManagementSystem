@@ -1,15 +1,17 @@
 ﻿body {
     background-image: url(/image/danielle-cerullo-CQfNt66ttZM-unsplash.jpg);
-    background-repeat:no-repeat;
-    background-size:cover;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
+
 .main_page {
-    padding-top:5px;
-    padding-bottom:15px;
-    width:70%;
+    padding-top: 5px;
+    padding-bottom: 15px;
+    width: 70%;
     background-color: black;
-    margin-top:150px;
+    margin-top: 150px;
 }
-.display-4{
-    color:white;
+
+.display-4 {
+    color: white;
 }
