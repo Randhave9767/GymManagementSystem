@@ -26,7 +26,11 @@
                             @if(User.Identity.Name == "admin")
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-light" asp-area="" asp-controller="Admin" asp-action="GetTrainers">Trainers</a>
+                                    
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" asp-area="" asp-controller="Admin" asp-action="GetTrainers">Trainers</a><a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="GetTrainers">Trainers</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link text-light" asp-area="" asp-controller="Members" asp-action="Index">Members</a>
@@ -68,6 +72,10 @@
                                 <li class="nav-item">
                                     <a class="nav-link text-light" asp-area="" asp-controller="User" asp-action="Index2">Home</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-route-id="@ViewBag.Id" asp-controller="User" asp-action="feedbackIndex">Feedback</a>
+                                </li>
+                               
                                 <li class="nav-link text-light" asp-area="">Hello-@User.Identity.Name</li>
 
 

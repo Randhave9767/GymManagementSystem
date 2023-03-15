@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $.ajax({
+                type: "GET",
+                url: "https://localhost:7298/api/UserfeedbacksApi/" + @ViewBag.Id,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+
+                    //Clear all previous list of members
+
+
+                    //Display Asp.Net Web API response in console log
+                    //You can see console log value in developer tool
+                    //by pressing F12 function key.
+                    console.log(response);
+
+
+                    //Variable created to store <li>Memeber Detail</li>
+                    var ListValue = "";
+                    var ListValue2 = "";
+
+                    //Variable created to iterate the json array values.
+                    var i;
+
+                    //Generic loop to iterate the response arrays.
+                    for (i = 0; i < response.length; ++i) {
+                        
+                        if (response[i].seen == true){
+                            console.log("seen true");
+                            ListValue += '<tr><td>' + response[i].sub + '</td><td>' + response[i].feedback + '</td ></tr >'
+
+                        }else{
+                            console.log("seen false");
+                            ListValue2 += '<tr><td>' + response[i].sub + '</td><td>' + response[i].feedback + '</td ></tr >'
+
+                        }
+
+                    }
+
+                    //Add/Append the formatted values of ListValue variable into ID called "MemberList"
+                    //$("#MemberList").append(ListValue);
+                    $("#unread").append(ListValue2);
+                    $("#read").append(ListValue);
+
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                    alert("Failure");
+                },
+                error: function (response) {
+                    alert(response);
+                    alert("Error");
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <a asp-action="CreateFeedback" >Feedback/Complaints</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Subject
+            </th>
+            <th>
+                Feedback
+            </th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody id="unread">
+        
+          
+    </tbody>
+
+</table>
+<h4>Seen Feedbacks</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Subject
+                </th>
+                <th>
+                    Feedback
+                </th>
+              
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody id="read" style="background-color:aliceblue">
+
+        </tbody>
+    </table>
+</body>
+</html>
