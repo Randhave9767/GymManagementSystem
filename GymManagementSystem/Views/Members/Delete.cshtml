@@ -10,8 +10,6 @@
         $(document).ready(function () {
             $("#Save").click(function () {
 
-
-
                 $.ajax({
                     url: 'https://localhost:7298/api/MembersApi/' + @ViewBag.id,
                     type: 'Delete',
@@ -25,8 +23,6 @@
                     },
                     error: function (response) {
                         console.log('Error in Operation' + response.responseText);
-
-
                     }
                 });
             });
@@ -34,13 +30,14 @@
     </script>
 </head>
 <body>
-    <h1>Delete</h1>
+    <h2 class="text-decoration-underline">Delete Member:</h2>
 
     <h3>Are you sure you want to delete this member?</h3>
+    <hr />
     <div>
 
-        <button class="btn-success btn"><a asp-action="Index">NO</a></button>
-        <button class="btn-danger btn" id="Save">Yes</button>
+        <input type="submit" value="Delete" class="btn btn-danger" id="Save" />
+        <a asp-action="Index" class="btn btn-outline-primary">Back to List</a>
     </div>
 </body>
 </html>

@@ -35,35 +35,98 @@
                 }
             });
         });
+
+
+
+
+        $(document).ready(function () {
+
+            $.ajax({
+                type: "GET",
+                url: "https://localhost:7298/api/TrainersApi/GetMembers/" + @ViewBag.id,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+
+                    //Clear all previous list of members
+
+
+                    //Display Asp.Net Web API response in console log
+                    //You can see console log value in developer tool
+                    //by pressing F12 function key.
+                    console.log(response);
+
+
+                    //Variable created to store <li>Memeber Detail</li>
+                    var ListValue = "";
+
+                    //Variable created to iterate the json array values.
+                    var i;
+
+                    //Generic loop to iterate the response arrays.
+                    for (i = 0; i < response.length; ++i) {
+                        console.log(response[i].id);
+                        // ListValue += "<li>" + response[i].membershipName + " --- " + response[i].fee+" ----" + response[i].description
+                        ListValue += '<tr><td>' + response[i].user.fullName + '</td><td>' + response[i].user.mobileNo + '</td><td>' + '<a href="http://localhost:5118/TrainerHome/MemberDetails?id=' + response[i].id + '&trainerId=' + response[i].trainerId + '" class="btn btn-dark">Details</a>' + '</td ></tr >'
+
+
+                    }
+
+                    //Add/Append the formatted values of ListValue variable into ID called "MemberList"
+                    //$("#MemberList").append(ListValue);
+                    $("#tbody1").append(ListValue);
+
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                    alert("Failure");
+                },
+                error: function (response) {
+                    alert(response);
+                    alert("Error");
+                }
+            });
+        });
     </script>
+
 </head>
+
+
 <body>
     @*<a asp-action="Create">Create</a>*@
-    <table class="table">
+
+     <marquee class="bg-info fs-3">Welcome to MaxFitness... Fit body, fit mind, fit life..!!</marquee>
+    <br />
+    <br />
+    <h3 class="text-decoration-underline">Your Details:</h3>
+    <br />
+    <table class="table table-bordered bg-light border border-dark">
         <thead>
             <tr>
-                <th>
-                    Name
-                </th>
-                <th>
-                    Salary
-                </th>
-                <th>
-                    Joining Date
-                </th>
-
+                <th>Name</th>
+                <th>Salary</th>
+                <th>Joining Date</th>
             </tr>
         </thead>
         <tbody id="tbody">
-            <td id="name">
-            </td>
-            <td id="salary">
-            </td>
-            <td id="joiningDate">
-            </td>
-
-
+            <td id="name"></td>
+            <td id="salary"></td>
+            <td id="joiningDate"></td>
         </tbody>
+    </table>
+    <br />
+
+    <h3 class="text-decoration-underline">Your Member Details:</h3>
+    <br />
+    <table class="table table-borderless bg-light">
+        <thead class="border-bottom">
+            <tr>
+                <th>Name</th>
+                <th>Mobile No</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="tbody1"></tbody>
     </table>
 </body>
 </html>
