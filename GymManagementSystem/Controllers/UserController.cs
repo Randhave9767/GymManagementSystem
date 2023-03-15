@@ -18,22 +18,79 @@ namespace GymManagementSystem.Controllers
         public IActionResult Index2()
         {
             int Id = -1;
-            Id = (int)HttpContext.Session.GetInt32("Id");
+            try
+            {
+                Id = (int)HttpContext.Session.GetInt32("Id");
+            }
+            catch (Exception ex)
+            {
+
+            }
             return RedirectToAction("Index", new { id = Id });
         }
         public IActionResult Index(int id)
         {
             int Id = -1;
+            try
+            {
                 Id = (int)HttpContext.Session.GetInt32("Id");
+            }catch (Exception ex)
+            {
+
+            }
+                
             if(Id == id)
             {
-                User u = _context.Users.FirstOrDefault(x => x.Id == id);
+               // User u = _context.Users.FirstOrDefault(x => x.Id == id);
                 ViewBag.id = id;
 
-                return View(u);
+                return View();
             }
 
             return RedirectToAction("Login", "Account");
+            
+        }
+
+        public IActionResult feedbackIndex()
+        {
+            int id = -1;
+            try
+            {
+                id = (int)HttpContext.Session.GetInt32("Id");
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+           
+                
+                ViewBag.Id = id;
+
+                return View();
+            
+
+            
+        }
+
+        public IActionResult CreateFeedback()
+        {
+            int id = -1;
+            try
+            {
+                id = (int)HttpContext.Session.GetInt32("Id");
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            
+                ViewBag.Id = id;
+
+                return View();
+            
+
             
         }
     }

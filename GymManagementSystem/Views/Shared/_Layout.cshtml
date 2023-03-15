@@ -26,6 +26,9 @@
                             @if(User.Identity.Name == "admin")
                             {
                                 <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Home</a>
+                                </li>
+                                <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="GetTrainers">Trainers</a>
                                 </li>
                                 <li class="nav-item">
@@ -38,7 +41,7 @@
                                 <a class="nav-link text-dark" asp-controller="Equipments" asp-action="Index" asp-route-id="">Equipment</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Home</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Userfeedbacks" asp-action="Index">Feedback</a>
                                 </li>
                                 <li class="nav-link text-dark" asp-area="">Hello-@User.Identity.Name</li>
 
@@ -60,6 +63,7 @@
                                  <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-controller="TrainerHome" asp-action="Memberships" asp-route-id="@ViewBag.id">Memberships</a>
                                 </li>
+                                
                                 <li class="nav-link text-dark" asp-area="">Hello-@User.Identity.Name</li>
 
 
@@ -70,6 +74,9 @@
                             {
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Index2">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-route-id="@ViewBag.Id" asp-controller="User" asp-action="feedbackIndex">Feedback</a>
                                 </li>
                                 <li class="nav-link text-dark" asp-area="">Hello-@User.Identity.Name</li>
 

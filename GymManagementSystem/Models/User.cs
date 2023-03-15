@@ -18,4 +18,6 @@ public partial class User
     public virtual ICollection<Member> Members { get; } = new List<Member>();
 
     public virtual ICollection<Trainer> Trainers { get; } = new List<Trainer>();
+
+    public virtual ICollection<Userfeedback> Userfeedbacks { get; } = new List<Userfeedback>();
 }
