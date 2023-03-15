@@ -26,7 +26,7 @@
                     //Generic loop to iterate the response arrays.
                     for (i = 0; i < response.length; ++i) {
                        // ListValue += "<tr><td>" + response[i].equipmentName + "</td><td>" + response[i].quantity + "</td></tr > "
-                        ListValue += '<tr><td>' + response[i].equipmentName + '</td><td>' + response[i].quantity + '</td><td>' + '<a href="Equipments/Edit/' + response[i].equipmentId + '" class="btn btn-secondary">Edit</a>' + '</td><td>'+'<a href="Equipments/Delete/' + response[i].equipmentId + '" class="btn btn-secondary">Delete</a>' + '</td ></tr >'
+                        ListValue += '<tr><td>' + response[i].equipmentName + '</td><td>' + response[i].quantity + '</td><td>' + '<a href="Equipments/Edit/' + response[i].equipmentId + '" class="btn btn-warning">Edit</a>' + '</td><td>'+'<a href="Equipments/Delete/' + response[i].equipmentId + '" class="btn btn-danger">Delete</a>' + '</td ></tr >'
                     }
 
                     //Add/Append the formatted values of ListValue variable into ID called "MemberList"
@@ -54,7 +54,7 @@
 @{
     ViewData["Title"] = "Index";
 }
-<h2>Equipment Dashboard</h2>
+<h2 class="text-decoration-underline">Equipment Dashboard</h2>
 <br />
 <p>
     <a asp-action="Create" class="btn btn-info">Add an Equipment</a>

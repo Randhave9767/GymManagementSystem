@@ -1,5 +1,13 @@
 ﻿@model IEnumerable<GymManagementSystem.Models.User>
 
+<link href="~/css/extra.css" rel="stylesheet" type="text/css" />
+
+<marquee class="bg-info fs-3">Welcome to MaxFitness... Fit body, fit mind, fit life..!!</marquee>
+<br />
+<br />
+<h2 class="text-decoration-underline">New Joinees:</h2>
+<br />
+
 <!DOCTYPE html>
 
 <html>
@@ -17,7 +25,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.MobileNo)
             </th>
-            <th></th>
+           
+            <th>Actions</th>
+            
         </tr>
     </thead>
     <tbody>
@@ -32,14 +42,56 @@
                     @Html.DisplayFor(modelItem => item.MobileNo)
                 </td>
                 <td>
-                    <a asp-controller="Members" asp-action="Create" asp-route-id="@item.Id">Add Member</a> |
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-controller="Members" asp-action="Create" asp-route-id="@item.Id" class="btn btn-success">Allot Membership</a>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Edit Joinee</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Remove Joinee</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+<br />
+<br />
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card-group">
+                <div class="card border border-dark" style="width: auto; flex-direction:row">
+                    <div class="card-body">
+                        <h5 class="card-title">Add Trainer</h5>
+                        <p class="card-text">click on the button below to add new trainer in the Gym</p>
+                        <a asp-controller="Admin" asp-action="AddTrainer" class="btn btn-info">Add Trainer</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border border-dark" style="width: auto; flex-direction:row">
+                <div class="card-body">
+                    <h5 class="card-title">View Trainers</h5>
+                    <p class="card-text">Click on the button to view all the trainers available in the gym</p>
+                    <a asp-controller="Admin" asp-action="GetTrainers" class="btn btn-info">View Trainer</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card-group">
+                <div class="card border border-dark" style="width: auto; flex-direction:row">
+                    <div class="card-body">
+                        <h5 class="card-title">View Members</h5>
+                        <p class="card-text">Click on the button to view all the members available in the gym</p>
+                        <a asp-controller="Members" asp-action="index" class="btn btn-info">Add Member</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+
+
 @section scripts{
     <script type="text/javascript">
         function preventBack() {

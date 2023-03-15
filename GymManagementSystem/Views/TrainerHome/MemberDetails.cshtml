@@ -45,7 +45,8 @@
 </head>
 <body>
     <div>
-        <h4>Member</h4>
+        <h2 class="text-decoration-underline">Member Details:</h2>
+        <br />
         <hr />
         <dl class="row">
             <dt class="col-sm-2">
@@ -87,12 +88,11 @@
             </dd>
 
         </dl>
+        <hr />
     </div>
-    @*<div>
-        <a asp-action="Edit" asp-route-id="@ViewBag.Id">Edit</a> |
-        <a asp-action="Delete" asp-route-id="@ViewBag.Id">Delete</a> |
-        <a asp-action="Index">Back to List</a>
-    </div>*@
+    <div>
+        <a asp-action="Index" asp-controller="TrainerHome" asp-route-id="@ViewBag.id" class="btn btn-outline-primary">Back to List</a>
+    </div>
 </body>
 </html>
 

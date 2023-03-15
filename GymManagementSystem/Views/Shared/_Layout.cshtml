@@ -10,10 +10,10 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-dark border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Max Fittness</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                <a class="navbar-brand text-light" asp-area="" asp-controller="Home" asp-action="Index">Max Fittness</a>
+                <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -26,55 +26,52 @@
                             @if(User.Identity.Name == "admin")
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="GetTrainers">Trainers</a>
+                                    <a class="nav-link text-light" asp-area="" asp-controller="Admin" asp-action="GetTrainers">Trainers</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Members" asp-action="Index">Members</a>
+                                    <a class="nav-link text-light" asp-area="" asp-controller="Members" asp-action="Index">Members</a>
                                 </li
                                 <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="MembershipTypes" asp-action="Index" asp-route-id="">Membership</a>
+                                <a class="nav-link text-light" asp-controller="MembershipTypes" asp-action="Index" asp-route-id="">Membership</a>
                                 </li>
                                 <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Equipments" asp-action="Index" asp-route-id="">Equipment</a>
+                                <a class="nav-link text-light" asp-controller="Equipments" asp-action="Index" asp-route-id="">Equipment</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Home</a>
+                                    <a class="nav-link text-light" asp-area="" asp-controller="Admin" asp-action="Index">Home</a>
                                 </li>
-                                <li class="nav-link text-dark" asp-area="">Hello-@User.Identity.Name</li>
+                                <li class="nav-link text-light" asp-area="">Hello-@User.Identity.Name</li>
 
 
-                                <li >@Html.ActionLink("Logout", "Logout", "Account", new { area = "" }, new { @class = "nav-link text-dark" })</li>
+                                        <li >@Html.ActionLink("Logout", "Logout", "Account", new { area = "" }, new { @class = "nav-link text-light" })</li>
 
                             }
                             else if(User.IsInRole("trainer"))
                             {
                                  <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="TrainerHome" asp-action="Index" asp-route-id="@ViewBag.id">Home</a>
+                                    <a class="nav-link text-light" asp-area="" asp-controller="TrainerHome" asp-action="Index" asp-route-id="@ViewBag.id">Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="TrainerHome" asp-action="GetMembers" asp-route-id="@ViewBag.id">Members</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="TrainerHome" asp-action="Equipments" asp-route-id="@ViewBag.id">Equipments</a>
+                                    <a class="nav-link text-light" asp-area="" asp-controller="TrainerHome" asp-action="Equipments" asp-route-id="@ViewBag.id">Equipments</a>
                                 </li>
                                  <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="TrainerHome" asp-action="Memberships" asp-route-id="@ViewBag.id">Memberships</a>
+                                    <a class="nav-link text-light" asp-area="" asp-controller="TrainerHome" asp-action="Memberships" asp-route-id="@ViewBag.id">Memberships</a>
                                 </li>
-                                <li class="nav-link text-dark" asp-area="">Hello-@User.Identity.Name</li>
+                                <li class="nav-link text-light" asp-area="">Hello-@User.Identity.Name</li>
 
 
-                            <li >@Html.ActionLink("Logout", "Logout2", "Account", new { area = "" }, new { @class = "nav-link text-dark" })</li>
+                            <li >@Html.ActionLink("Logout", "Logout2", "Account", new { area = "" }, new { @class = "nav-link text-light" })</li>
                        
                             }
                             else
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Index2">Home</a>
+                                    <a class="nav-link text-light" asp-area="" asp-controller="User" asp-action="Index2">Home</a>
                                 </li>
-                                <li class="nav-link text-dark" asp-area="">Hello-@User.Identity.Name</li>
+                                <li class="nav-link text-light" asp-area="">Hello-@User.Identity.Name</li>
 
 
-                            <li >@Html.ActionLink("Logout", "Logout2", "Account", new { area = "" }, new { @class = "nav-link text-dark" })</li>
+                                    <li >@Html.ActionLink("Logout", "Logout2", "Account", new { area = "" }, new { @class = "nav-link text-light" })</li>
                        
                             }
 
@@ -82,11 +79,11 @@
                         else{
 
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                                <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                             </li>
 
-                                <li>@Html.ActionLink("Login", "Login", "Account", new { area = "" }, new { @class = "nav-link text-dark" })</li>
-                            <li>@Html.ActionLink("Signup", "Signup", "Account", new { area = "" }, new { @class = "nav-link text-dark" })</li>
+                                <li>@Html.ActionLink("Login", "Login", "Account", new { area = "" }, new { @class = "nav-link text-light" })</li>
+                                <li>@Html.ActionLink("Signup", "Signup", "Account", new { area = "" }, new { @class = "nav-link text-light" })</li>
 
 
                         }
@@ -103,7 +100,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container text-dark">
-            &copy; 2023 - MaxFitness - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2023 - MaxFitness - <a asp-area="" asp-controller="Home" asp-action="Privacy" class="text-decoration-none text-dark">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

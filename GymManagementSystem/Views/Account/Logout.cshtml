@@ -7,13 +7,21 @@
     <head>
     <title></title>
     <meta charset="utf-8" />
+
+    <link href="~/css/extra.css" rel="stylesheet" type="text/css" />
+
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 
 </head>
     <body>
-    Are you sure you want to logout?
-    <a asp-action="Logout2" class="btn btn-primary">Yes</a>
-
+    <marquee class="bg-info fs-3">Thank You for joining MaxFitness...Fit body, fit mind, fit life..!!</marquee>
+    <br />
+    <br />
+    <h1 class="text-decoration-underline">Are you sure you want to Logout?</h1>
+    <br />
+    <a asp-action="Logout2" class="btn btn-outline-success">YES</a>
+    <a asp-action="Index" asp-controller="Admin" class="btn btn-outline-primary">Back to Home</a>
+    <hr />
     @section scripts{
         <script type="text/javascript">
             function preventBack() {
