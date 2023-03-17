@@ -68,65 +68,78 @@
                     
                     
                     console.log(response);
+                    console.log(response.members.length)
                    
-
-                    $.ajax({
-                        type: "GET",
-                        url: "https://localhost:7298/api/MembershipTypesApi/" + response.members[0].membershipId,
-                        contentType: "application/json; charset=utf-8",
-                        dataType: "json",
-                        success: function (response) {
-                            console.log(response.membershipName);
-                           
-                            $('#Membership').append(response.membershipName);
-
-                        },
-                        failure: function (response) {
-                            alert(response.responseText);
-                            alert("Failure");
-                        },
-                        error: function (response) {
-                            alert(response);
-                            alert("Error");
-                        }
-                    });
-
-                    $.ajax({
-                        type: "GET",
-                        url: "https://localhost:7298/api/TrainersApi/" + response.members[0].trainerId,
-                        contentType: "application/json; charset=utf-8",
-                        dataType: "json",
-                        success: function (response) {
-                            console.log(response);
-                            
-                            $('#Trainer').append(response.user.fullName);
-                            
-                            
-
-                        },
-                        failure: function (response) {
-                            alert(response.responseText);
-                            alert("Failure");
-                        },
-                        error: function (response) {
-                            alert(response);
-                            alert("Error");
-                        }
-                    });
-
-                   
-                    var ListValue = "";
+                        if(response.members != 0)
+                        {
 
                         
-                        console.log(response.id);
-                    ListValue += '<tr><td>' + response.fullName + '</td><td>' + response.mobileNo + '</td><td>' + 'NA' + '</td><td>' + 'NA' + '</td><td>' + response.members[0].joinDate + '</td><td>' + response.members[0].expiryDate + '</td ></tr >'
-                    $('#Name').append(response.fullName);
-                    $('#MobileNo').append(response.mobileNo);
-                    $('#Trainer').append();
+                        $.ajax({
+                            type: "GET",
+                            url: "https://localhost:7298/api/MembershipTypesApi/" + response.members[0].membershipId,
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            success: function (response) {
+                                console.log(response.membershipName);
+
+                                $('#Membership').append(response.membershipName);
+
+                            },
+                            failure: function (response) {
+                                alert(response.responseText);
+                                alert("Failure");
+                            },
+                            error: function (response) {
+                                alert(response);
+                                alert("Error");
+                            }
+                        });
+
+
+                        $.ajax({
+                            type: "GET",
+                            url: "https://localhost:7298/api/TrainersApi/" + response.members[0].trainerId,
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            success: function (response) {
+                                console.log(response);
+
+                                $('#Trainer').append(response.user.fullName);
+
+
+
+                            },
+                            failure: function (response) {
+                                alert(response.responseText);
+                                alert("Failure");
+                            },
+                            error: function (response) {
+                                alert(response);
+                                alert("Error");
+                            }
+                        });
+
+
+                        $('#Name').append(response.fullName);
+                        $('#MobileNo').append(response.mobileNo);
+                        $('#Trainer').append();
+
+                        $('#JoinDate').append(response.members[0].joinDate);
+                        $('#ExpiryDate').append(response.members[0].expiryDate);
+
+
+                        }else{
+                        $('#table').css("display", "none");
+                        }
+                   
+
+                   
+
+                   
                     
-                    $('#JoinDate').append(response.members[0].joinDate);
-                    $('#ExpiryDate').append(response.members[0].expiryDate);
-                    //$("#tbody").append(ListValue);
+
+                        
+                      
                     
                    
 
@@ -140,6 +153,8 @@
                     alert("Error");
                 }
             });
+           
+         
         });
     </script>
 </head>
@@ -149,27 +164,7 @@
     <br />
     <h3 class="text-decoration-underline">Offers Available</h3>
     <br />
-    @*<div>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>
-                       MembershipName
-                    </th>
-                    <th>
-                        Fee
-                    </th>
-                    <th>
-                        Description
-                    </th>
-                    
-                </tr>
-            </thead>
-            <tbody id="tbody">
-            </tbody>
-        </table>
-    </div>*@
-
+   
 
 
     <div class="container">
@@ -178,12 +173,8 @@
                 <div class="card bg-light" style="width: auto; flex-direction:row">
                     <div class="card-body">
                         <table class="table table-borderless">
-                            <thead>
-                             <tr class="border-bottom">
-                                <th>MembershipName</th>
-                                <th>Fee</th>
-                                <th>Description</th>
-                            </tr>
+                            <thead id="thead">
+
                             </thead>
                             <tbody id="tbody"></tbody>
                         </table>
@@ -195,11 +186,12 @@
 
     <br /><br />
     <div>
-        <h3 class="text-decoration-underline"> Your Details:</h3>
+        
         <br />
-        <div class="container-fluid">
+        <div class="container-fluid" id="table">
+            <h3 class="text-decoration-underline"> Your Details:</h3>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6" id="divId">
                     <table class="table table-bordered bg-light">
                         <tbody>
                             <tr>
