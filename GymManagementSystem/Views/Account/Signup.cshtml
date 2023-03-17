@@ -7,33 +7,40 @@
 <div class="row">
     <div class="col-md-4 mx-auto form1">
         <br />
-        <h3 class="text-center">Signup</h3>
+        <div class="d-flex justify-content-center">
+            <span class=""><img src="~/image/user_icon2.jpg" /></span>
+
+        </div>
+        <h2 class="text-center">Signup</h2>
         <br/>
         <form asp-action="Signup">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="FullName" class="control-label"></label>
-                <input asp-for="FullName" class="form-control" />
+                @*<label asp-for="FullName" class="control-label"></label>*@
+                <input asp-for="FullName" class="form-control border border-3" placeholder="Fullname"/>
                 <span asp-validation-for="FullName" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
-                <label asp-for="Username" class="control-label"></label>
-                <input asp-for="Username" class="form-control" />
+                @*<label asp-for="Username" class="control-label"></label>*@
+                <input asp-for="Username" class="form-control border border-3" placeholder="Username"/>
                 <span asp-validation-for="Username" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
-                <label  asp-for="Password" class="control-label"></label>
-                <input type="password"  asp-for="Password" class="form-control" />
+                @*<label  asp-for="Password" class="control-label"></label>*@
+                <input type="password" asp-for="Password" class="form-control border border-3" placeholder="Password"/>
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
-                <label asp-for="MobileNo" class="control-label"></label>
-                <input asp-for="MobileNo" class="form-control" />
+                @*<label asp-for="MobileNo" class="control-label"></label>*@
+                <input asp-for="MobileNo" class="form-control border border-3" placeholder="MobileNo"/>
                 <span asp-validation-for="MobileNo" class="text-danger"></span>
             </div>
             <br />
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-dark" />
+                <input type="submit" value="Create" class="btn btn-dark w-100" />
                 <div class="new_link"><p>Already have an account <a asp-action="Login" class="new_tag">Login here</a></p></div>
             </div>
             <br />

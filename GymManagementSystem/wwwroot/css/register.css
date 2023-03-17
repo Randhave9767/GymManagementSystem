@@ -1,12 +1,20 @@
 ﻿
 body {
-    background-color: #FFFBEB;
+    /*background-color: #ECF3FB;*/
+    /* background-color: #C1DBF0;*/
+    background-color: rgba(237, 252, 255, 0.8);
 }
 
 .form1 {
-    background-color: #ECF2FF;
-    /*border-radius: 10px;*/
-    border: 2px solid black;
+    /* background-color: #ECF2FF;*/
+    /*background-color: #B1D4E0;*/
+    background-color: white;
+    border-radius: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    /*background-color: #C1DBF0;*/
+    /*border: 2px solid black;*/
+    box-shadow: 0 2px 8px 0 rgba(99,99,99,0.4);
 }
 
 .new_link {

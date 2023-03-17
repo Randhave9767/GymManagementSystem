@@ -1,4 +1,10 @@
-﻿using System;
+﻿using GymManagementSystem.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -6,7 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GymManagementSystem.Models;
-
+ 
 namespace GymManagementSystem.Controllers
 {
     public class UserfeedbacksController : Controller
@@ -28,7 +34,7 @@ namespace GymManagementSystem.Controllers
         // GET: Userfeedbacks/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null )
+            if (id == null)
             {
                 return NotFound();
             }
@@ -124,8 +130,8 @@ namespace GymManagementSystem.Controllers
             }
 
             var userfeedback = await _context.Userfeedbacks
-                .Include(u => u.User)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            .Include(u => u.User)
+            .FirstOrDefaultAsync(m => m.Id == id);
             if (userfeedback == null)
             {
                 return NotFound();
@@ -141,21 +147,20 @@ namespace GymManagementSystem.Controllers
         {
             if (_context.Userfeedbacks == null)
             {
-                return Problem("Entity set 'GymDatabaseContext.Userfeedbacks'  is null.");
+                return Problem("Entity set 'GymDatabaseContext.Userfeedbacks'  is null.");
             }
             var userfeedback = await _context.Userfeedbacks.FindAsync(id);
             if (userfeedback != null)
             {
                 _context.Userfeedbacks.Remove(userfeedback);
             }
-            
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool UserfeedbackExists(int id)
         {
-          return _context.Userfeedbacks.Any(e => e.Id == id);
+            return _context.Userfeedbacks.Any(e => e.Id == id);
         }
     }
 }

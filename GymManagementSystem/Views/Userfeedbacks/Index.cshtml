@@ -36,11 +36,11 @@
 
                         if (response[i].seen == true) {
                             console.log("seen true");
-                            ListValue += '<tr><td> <a href="http://localhost:5118/Userfeedbacks/Details/' + response[i].id + '" >' + response[i].sub + '</a></td > </tr >'
+                            ListValue += '<tr><td> <a href="http://localhost:5118/Userfeedbacks/Details/' + response[i].id + '" class="text-dark fs-5">' + response[i].sub + '</a></td > </tr >'
 
                         } else {
                             console.log("seen false");
-                            ListValue2 += '<tr><td> <a href="http://localhost:5118/Userfeedbacks/Details/' + response[i].id + '" >' + response[i].sub + '</a></td > </tr >'
+                            ListValue2 += '<tr><td> <a href="http://localhost:5118/Userfeedbacks/Details/' + response[i].id + '" class="text-dark fs-5" >' + response[i].sub + '</a></td > </tr >'
 
                         }
 
@@ -66,28 +66,31 @@
 </head>
 <body>
     
-    <table class="table">
+    <h2 class="text-decoration-underline">New Feedbacks:</h2>
+    <br />
+    <table class="table table-bordered border border-dark">
         <thead>
             <tr>
-                <th>
+                @*<th>
                     Subject
-                </th>
-
-                <th></th>
+                </th>*@
             </tr>
         </thead>
         <tbody id="unread">
         </tbody>
 
     </table>
-    <h4>Seen Feedbacks</h4>
-    <table class="table">
+
+    <br /><br />
+    <h2 class="text-decoration-underline">Seen Feedbacks:</h2>
+    <br />
+    <table class="table table-bordered border border-dark">
         <thead>
             <tr>
-                <th>
+                @*<th>
                     Subject
-                </th>
-                <th></th>
+                </th>*@
+                
             </tr>
         </thead>
         <tbody id="read" style="background-color:aliceblue">
