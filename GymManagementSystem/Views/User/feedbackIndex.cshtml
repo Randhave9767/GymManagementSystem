@@ -65,8 +65,12 @@
     </script>
 </head>
 <body>
-    <a asp-action="CreateFeedback" >Feedback/Complaints</a>
-<table class="table">
+
+ <a asp-action="CreateFeedback" class="btn btn-outline-dark">Add Feedback</a>
+ <br /><br />
+ <h2 class="text-decoration-underline">New Feedback</h2>
+ <br />
+    <table class="table table-bordered">
     <thead>
         <tr>
             <th>
@@ -76,7 +80,6 @@
                 Feedback
             </th>
             
-            <th></th>
         </tr>
     </thead>
     <tbody id="unread">
@@ -85,8 +88,11 @@
     </tbody>
 
 </table>
-<h4>Seen Feedbacks</h4>
-    <table class="table">
+
+<br /><br />
+    <h2 class="text-decoration-underline">Seen Feedback</h2>
+    <br />
+    <table class="table table-bordered">
         <thead>
             <tr>
                 <th>
@@ -96,8 +102,6 @@
                     Feedback
                 </th>
               
-
-                <th></th>
             </tr>
         </thead>
         <tbody id="read" style="background-color:aliceblue">
