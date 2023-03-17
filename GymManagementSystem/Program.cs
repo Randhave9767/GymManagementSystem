@@ -16,7 +16,7 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddSession();
 
 builder.Services.AddDbContext<GymDatabaseContext>(options =>
-options.UseSqlServer(builder.Configuration.GetConnectionString("Server=PSL-6957XM3;Database=GymDatabase;Trusted_Connection=True;Encrypt=false;"))
+options.UseSqlServer(builder.Configuration.GetConnectionString("Server=PSL-G357XM3;Database=GymDatabase;Trusted_Connection=True;Encrypt=false;"))
 
 );
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();

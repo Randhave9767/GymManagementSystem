@@ -24,9 +24,39 @@
                     $('#contact').append(response.user.mobileNo);
                     $('#membershipType').append(response.membership.membershipName);
                    // $('#trainer').append(response.trainer.user.neme);
-                    $('#joinDate').append(response.joinDate);
-                    $('#expiryDate').append(response.expiryDate);
+                    var dateObj = new Date(response.joinDate);
+                    var newDate = dateObj.getDate() + "/" + dateObj.getMonth() + "/" + dateObj.getFullYear();
+                    $('#joinDate').append(newDate)
+                    dateObj = new Date(response.expiryDate);
+                    newDate = dateObj.getDate() + "/" + dateObj.getMonth() + "/" + dateObj.getFullYear();
+                    $('#expiryDate').append(newDate);
                     
+                    var userId = response.trainer.userId;
+                    console.log(userId);
+                    $.ajax({
+                        type: "GET",
+                        url: "https://localhost:7298/api/UsersApi/" + userId,
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (response) {
+
+
+
+
+
+                            console.log(response);
+                            $('#trainerName').append(response.fullName);
+                           
+                        },
+                        failure: function (response) {
+                            alert(response.responseText);
+                            alert("Failure");
+                        },
+                        error: function (response) {
+                            alert(response);
+                            alert("Error");
+                        }
+                    });
 
 
                 },
@@ -64,6 +94,12 @@
                 Membership Type
             </dt>
             <dd id="membershipType" class="col-sm-10">
+
+            </dd>
+            <dt class="col-sm-2">
+                Trainer Name
+            </dt>
+            <dd id="trainerName" class="col-sm-10">
 
             </dd>
 
