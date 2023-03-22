@@ -108,6 +108,49 @@ namespace GymManagementSystem.Controllers
 
         }
 
+        public IActionResult EquipmentRequests(int id) {
+
+            try
+            {
+                _id = (int)HttpContext.Session.GetInt32("Id");
+
+            }
+            catch (Exception ex)
+            {
+                RedirectToAction("Login", "Account");
+            }
+
+            if (_id == id)
+            {
+                ViewBag.Id = _id;
+                return View();
+            }
+
+            return RedirectToAction("Login", "Account");
+
+        }
+
+        public IActionResult NewRequest(int id)
+        {
+            try
+            {
+                _id = (int)HttpContext.Session.GetInt32("Id");
+
+            }
+            catch (Exception ex)
+            {
+                RedirectToAction("Login", "Account");
+            }
+
+            if (_id == id)
+            {
+                ViewBag.Id = _id;
+                return View();
+            }
+
+            return RedirectToAction("Login", "Account");
+        }
+
         public IActionResult Memberships(int id)
         {
             try

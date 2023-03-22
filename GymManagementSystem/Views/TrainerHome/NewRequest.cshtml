@@ -1,0 +1,100 @@
+﻿@model GymManagementSystem.Models.EquipmentRequest
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $.ajax({
+                type: "GET",
+                url: "https://localhost:7298/api/Equipment/GetAllEquipments",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+
+                    console.log(response[0].id + " " + response[0].membershipName)
+
+                    var list = "<option value= None>Select</option>"
+                    for (i = 0; i < response.length; ++i) {
+                        list += "<option value=" + response[i].equipmentName + ">" + response[i].equipmentName + "</option>";
+
+                    }
+
+                    $('#name').append(list);
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                    alert("Failure");
+                },
+                error: function (response) {
+                    alert(response);
+                    alert("Error");
+                }
+            });
+
+
+            $("#Submit").click(function () {
+
+                var eqRequest = new Object();
+                eqRequest.equipmentName = $('#name').val();
+                eqRequest.quantity = $('#quantity').val();
+                eqRequest.requestStatus = "Applied";
+                eqRequest.trainerId = @ViewBag.Id;
+                eqRequest.reason = $('#reason').val();
+
+                $.ajax({
+                    url: 'https://localhost:7298/api/EquipmentRequests',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    data: JSON.stringify(eqRequest),
+                    success: function (data, textStatus, xhr) {
+                        console.log(data);
+                        var url = '@Url.Action("EquipmentRequests", "TrainerHome", new{id = ViewBag.Id})';
+                        window.location.href = url;
+                    },
+                    error: function (response) {
+                        console.log('Error in Operation' + response.responseText);
+                        
+
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="EquipmentName" class="control-label"></label>
+                    <select asp-for="EquipmentName" class="form-control" id="name"></select>
+                    <span asp-validation-for="EquipmentName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Quantity" class="control-label"></label>
+                    <input asp-for="Quantity" class="form-control" id="quantity"/>
+                    <span asp-validation-for="Quantity" class="text-danger"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label asp-for="Reason" class="control-label"></label>
+                    <input asp-for="Reason" class="form-control" id="reason"/>
+                    <span asp-validation-for="Reason" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Submit" id="Submit" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

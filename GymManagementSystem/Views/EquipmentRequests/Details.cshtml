@@ -1,0 +1,267 @@
+﻿@model GymManagementSystem.Models.EquipmentRequest
+
+@{
+    ViewData["Title"] = "Details";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            var equipmentRequest = new Object();
+            equipmentRequest.id = @ViewBag.Id;
+            
+            $.ajax({
+                type: "GET",
+                url: "https://localhost:7298/api/EquipmentRequests/" + @ViewBag.id,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+
+                    $('#equipment').append(response.equipmentName);
+                    $('#quantity').append(response.quantity);
+                    $('#reason').append(response.reason);
+                    $('#trainer').append(response.trainer.user.fullName);
+                    $('#status').append(response.requestStatus);
+                    $('#trainerId').append(response.trainerId);
+
+                    
+                    equipmentRequest.equipmentName = response.equipmentName;
+                    equipmentRequest.quantity = response.quantity;
+                    equipmentRequest.requestStatus = "Approved";
+                    equipmentRequest.trainerId = response.trainerId;
+                    equipmentRequest.reason = response.reason;
+
+                    if(response.requestStatus == "Applied"){
+                        
+                        $('#approvedRequests').attr('hidden', true);
+                        $('#closedRequests').attr('hidden', true);
+                        $('#add').attr('hidden', true);
+                        console.log("status is applied");
+                       
+                    } else if(response.requestStatus == "Approved"){
+                        $('#approve').attr('hidden', true);
+                        $('#reject').attr('hidden', true);
+                        $('#appliedRequests').attr('hidden', true);
+                        $('#closedRequests').attr('hidden', true);
+                        $('#appliedRequests').attr('disabled', true);
+                        $('#closedRequests').attr('disabled', true);
+                        console.log("status is approved");
+                    }else{
+                        $('#approve').attr('hidden', true);
+                        $('#reject').attr('hidden', true);
+                        $('#approvedRequests').attr('hidden', true);
+                        $('#appliedRequests').attr('hidden', true);
+                        $('#add').attr('hidden', true);
+                        
+                        console.log("status is closed");
+                    }
+
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                    alert("Failure");
+                },
+                error: function (response) {
+                    alert(response);
+                    alert("Error");
+                }
+            });
+
+            $('#approve').click(function(){
+
+                $.ajax({
+                    type: "PUT",
+                    url: "https://localhost:7298/api/EquipmentRequests/" + @ViewBag.id,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: JSON.stringify(equipmentRequest),
+                    success: function (response) {
+                        console.log(response);
+                        //console.log(response);
+                        var url = '@Url.Action("Index", "EquipmentRequests")';
+                        window.location.href = url;
+
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                        alert("Failure");
+                    },
+                    error: function (response) {
+                        alert(response);
+                        alert("Error in edit");
+                        console.log(response.responseText);
+                    }
+                });
+            })
+
+            $('#reject').click(function () {
+                equipmentRequest.requestStatus = "Rejected";
+                $.ajax({
+                    type: "PUT",
+                    url: "https://localhost:7298/api/EquipmentRequests/" + @ViewBag.id,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: JSON.stringify(equipmentRequest),
+                    success: function (response) {
+                        console.log(response);
+                        //console.log(response);
+                        var url = '@Url.Action("Index", "EquipmentRequests")';
+                        window.location.href = url;
+
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                        alert("Failure");
+                    },
+                    error: function (response) {
+                        alert(response);
+                        alert("Error in edit");
+                        console.log(response.responseText);
+                    }
+                });
+            })
+
+            $('#add').click(function () {
+                equipmentRequest.requestStatus = "Equipments Added";
+
+
+                $.ajax({
+                    type: "GET",
+                    url: "https://localhost:7298/api/Equipment/GetEquipmentByName?name=" + equipmentRequest.equipmentName,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        var equip = new Object();
+                        equip.equipmentId = response.equipmentId;
+                        equip.equipmentName = equipmentRequest.equipmentName;
+                        equip.quantity = response.quantity + equipmentRequest.quantity;
+                        console.log(equip)
+
+                        $.ajax({
+                            type: "PUT",
+                            url: "https://localhost:7298/api/EquipmentsApi/" + equip.equipmentId,
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            data: JSON.stringify(equip),
+                            success: function (response) {
+                                console.log(response);
+                                //console.log(response);
+                                
+                                $.ajax({
+                                    type: "PUT",
+                                    url: "https://localhost:7298/api/EquipmentRequests/" + @ViewBag.id,
+                                    contentType: "application/json; charset=utf-8",
+                                    dataType: "json",
+                                    data: JSON.stringify(equipmentRequest),
+                                    success: function (response) {
+                                        console.log(response);
+                                        //console.log(response);
+                                        alert("Equipments added successfully");
+                                        var url = '@Url.Action("GetClosedRequests", "EquipmentRequests")';
+                                        window.location.href = url;
+
+                                    },
+                                    failure: function (response) {
+                                        alert(response.responseText);
+                                        alert("Failure");
+                                    },
+                                    error: function (response) {
+                                        alert(response);
+                                        alert("Error in edit");
+                                        console.log(response.responseText);
+                                    }
+                                });
+
+                            },
+                            failure: function (response) {
+                                alert(response.responseText);
+                                alert("Failure");
+                            },
+                            error: function (response) {
+                                alert(response);
+                                alert("Error in edit");
+                                console.log(response.responseText);
+                            }
+                        });
+
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                        alert("Failure");
+                    },
+                    error: function (response) {
+                        alert(response);
+                        alert("Error");
+                    }
+                });
+
+                
+            })
+
+
+        });
+    </script>
+</head>
+<body>
+<h1>Details</h1>
+
+<div>
+    <h4>EquipmentRequest</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.EquipmentName)
+        </dt>
+        <dd class = "col-sm-10" id="equipment">
+           
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+        <dd class = "col-sm-10" id="quantity">
+            
+        </dd>
+        
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Reason)
+        </dt>
+        <dd class = "col-sm-10" id="reason">
+            
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Trainer)
+        </dt>
+        <dd class = "col-sm-10" id="trainer">
+           
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.RequestStatus)
+        </dt>
+        <dd class="col-sm-10" id="status">
+           
+        </dd>
+            
+            <dd class="col-sm-10" id="trainerId" hidden>
+
+             </dd>
+    
+    </dl>
+    
+</div>
+<div id="actions">
+        <button class="btn btn-dark" id="approve">Approve</button> 
+        <button class="btn btn-dark" id="reject">Reject</button> 
+        <button class="btn btn-dark" id="add">Add Equipments</button>
+        <button class="btn btn-dark" id="appliedRequests"><a asp-action="Index" style="text-decoration:none; color:white" id="appliedRequests">Back to List</a></button>
+        <button class="btn btn-dark" id="approvedRequests"><a asp-action="GetApprovedRequests" style="text-decoration:none; color:white" id="approvedRequests">Back to List</a></button>
+        <button class="btn btn-dark" id="closedRequests"><a asp-action="GetClosedRequests" style="text-decoration:none; color:white" id="closedRequests">Back to List</a></button>
+</div>
+
+
+</body>
+</html>
