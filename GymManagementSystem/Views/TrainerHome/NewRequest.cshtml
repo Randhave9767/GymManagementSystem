@@ -19,9 +19,9 @@
 
                     console.log(response[0].id + " " + response[0].membershipName)
 
-                    var list = "<option value= None>Select</option>"
+                    var list = "<option value= "">Select</option>"
                     for (i = 0; i < response.length; ++i) {
-                        list += "<option value="+ response[i].equipmentName +" > " + response[i].equipmentName + " < /option>"\";
+                        list += "<option value="+ response[i].equipmentName +">" + response[i].equipmentName + " < /option>";
 
                     }
 
