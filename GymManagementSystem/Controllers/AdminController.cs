@@ -179,6 +179,7 @@ namespace GymManagementSystem.Controllers
 
         public async Task<IActionResult> GetTrainerMembersAsync(int? Id)
         {
+            ViewBag.id = Id;
             var trainers = _context.Trainers.Include(x=>x.User) .ToList();
           //  Trainer trainer = trainers.FirstOrDefault(x=>x.Id == Id);
             ViewBag.TrainerName = trainers.FirstOrDefault(x => x.Id == Id).User.FullName.ToUpper();

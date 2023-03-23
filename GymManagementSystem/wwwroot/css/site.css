@@ -15,4 +15,62 @@ html {
 
 body {
     margin-bottom: 60px;
+    /*background-color: rgba(237, 252, 255, 0.8);*/
+}
+.logo{
+    width:40px;
+    height:40px;
+}
+/*.right-side-button {
+    float: right;
+}*/
+
+#left{
+    display:flex;
+    flex-grow:1;
+
+}
+#deadSpace{
+    display:flex;
+    flex-grow:2;
+}
+#right {
+    display: flex;
+    flex-grow: 0;
+}
+
+marquee {
+    box-shadow: 0 -5px 0 -8px black, 0 5px 3px -3px black;
+    font-weight: bold;
+    padding: 8px;
+    margin-top:15px;
+}
+.t_m_details {
+    box-shadow: 0 2px 8px 0 rgba(99,99,99,0.4);
+    padding: 10px;
+    border-radius: 6px;
+    
+}
+.c_member {
+    box-shadow: 0 2px 8px 0 rgba(99,99,99,0.4);
+    padding: 5px;
+    
+}
+.m_index {
+    box-shadow: 0 2px 8px 0 rgba(99,99,99,0.4);
+    padding:5px;
+    
+}
+.admin-home {
+    box-shadow: 0 2px 8px 0 rgba(99,99,99,0.4);
+    padding: 10px;
+    margin:12px;
+}
+.font_size{
+    font-size:14px;
+    
+}
+.c_center{
+    display:flex;
+    align-items:center;
 }

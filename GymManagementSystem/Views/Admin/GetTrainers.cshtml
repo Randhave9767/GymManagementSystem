@@ -8,9 +8,9 @@
 <a class="btn btn-info" asp-area="" asp-controller="Admin" asp-action="AddTrainer">Add new Trainer</a>
 <br />
 <br />
-<table class="table">
+<table class="table table-striped m_index">
     <thead>
-        <tr class="table-success">
+        <tr">
             <th>
                 @Html.DisplayNameFor(model => model.User.FullName)
             </th>
@@ -21,7 +21,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.User.MobileNo)
             </th>
-            <th></th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
@@ -38,12 +38,11 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.User.MobileNo)
                 </td>
-
                 <td>
                     <a asp-action="GetTrainerMembers" asp-route-id="@item.Id" class="btn btn-dark">Details</a>
 
-                    <a asp-controller="Trainers" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
                 </td>
+                
             </tr>
         }
     </tbody>

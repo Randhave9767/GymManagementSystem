@@ -65,10 +65,10 @@
     </script>
 </head>
 <body>
-    
-    <h2 class="text-decoration-underline">New Feedbacks:</h2>
+    <div class="m_index">
+    <h2 class="text-decoration-underline text-center">New Feedbacks:</h2>
     <br />
-    <table class="table table-bordered border border-dark">
+    <table class="table table-striped">
         <thead>
             <tr>
                 @*<th>
@@ -81,10 +81,13 @@
 
     </table>
 
-    <br /><br />
-    <h2 class="text-decoration-underline">Seen Feedbacks:</h2>
     <br />
-    <table class="table table-bordered border border-dark">
+    </div>
+    <br />
+    <div class="m_index">
+    <h2 class="text-decoration-underline text-center">Seen Feedbacks:</h2>
+    <br />
+    <table class="table table-striped m_index">
         <thead>
             <tr>
                 @*<th>
@@ -93,9 +96,11 @@
                 
             </tr>
         </thead>
-        <tbody id="read" style="background-color:aliceblue">
+            <tbody id="read" style="background-color:rgba(237, 252, 255, 0.8)">
         </tbody>
     </table>
+    <br />
+    </div>
 </body>
 </html>
 

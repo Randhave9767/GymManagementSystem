@@ -124,6 +124,15 @@
 
         </dl>
     </div>
+    <div id="extra-btn">
+
+       
+        <a asp-action="Edit" class="btn btn-warning" asp-route-id="@ViewBag.id">Edit</a>
+        <a asp-action="Delete" class="btn btn-danger" asp-route-id="@ViewBag.id">Delete</a>
+
+    </div>
+
+    <hr />
     <div>
         <a asp-action="Index" class="btn btn-outline-primary">Back to List</a>
     </div>

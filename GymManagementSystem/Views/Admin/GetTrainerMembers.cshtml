@@ -50,4 +50,10 @@
         }
     </tbody>
 </table>
+<div>
+    <a asp-controller="Trainers" asp-action="Edit" asp-route-id="@ViewBag.id" class="btn btn-warning">Edit</a>
+    <a asp-controller="Trainers" asp-action="Delete" asp-route-id="@ViewBag.id" class="btn btn-danger">Delete</a>
+    
+</div>
+<hr />
 <div><a asp-action="GetTrainers" class="btn btn-outline-primary">Back to List</a></div>

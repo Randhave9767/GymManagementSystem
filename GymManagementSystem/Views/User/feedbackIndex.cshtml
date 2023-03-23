@@ -67,10 +67,13 @@
 <body>
 
  <a asp-action="CreateFeedback" class="btn btn-outline-dark">Add Feedback</a>
- <br /><br />
- <h2 class="text-decoration-underline">New Feedback</h2>
- <br />
-    <table class="table table-bordered">
+    <br />
+    <br />
+    <div class="m_index">
+ 
+ <h3 class="text-decoration-underline text-center">New Feedback</h3>
+ 
+    <table class="table table-striped">
     <thead>
         <tr>
             <th>
@@ -89,10 +92,14 @@
 
 </table>
 
-<br /><br />
-    <h2 class="text-decoration-underline">Seen Feedback</h2>
+        <br />
+    </div>
     <br />
-    <table class="table table-bordered">
+    <br />
+    <div class="m_index">
+    <h3 class="text-decoration-underline text-center">Seen Feedback</h3>
+    
+    <table class="table">
         <thead>
             <tr>
                 <th>
@@ -108,5 +115,6 @@
 
         </tbody>
     </table>
+    </div>
 </body>
 </html>
