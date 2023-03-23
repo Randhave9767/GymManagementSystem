@@ -42,10 +42,12 @@
 
                 var eqRequest = new Object();
                 eqRequest.equipmentName = $('#name').val();
+                console.log(eqRequest.equipmentName);
                 eqRequest.quantity = $('#quantity').val();
                 eqRequest.requestStatus = "Applied";
                 eqRequest.trainerId = @ViewBag.Id;
                 eqRequest.reason = $('#reason').val();
+                console.log(eqRequest.reason);
 
                 $.ajax({
                     url: 'https://localhost:7298/api/EquipmentRequests',
