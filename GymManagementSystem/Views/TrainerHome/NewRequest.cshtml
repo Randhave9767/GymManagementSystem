@@ -21,7 +21,7 @@
 
                     var list = "<option value= None>Select</option>"
                     for (i = 0; i < response.length; ++i) {
-                        list += "<option value=" + response[i].equipmentName + ">" + response[i].equipmentName + "</option>";
+                        list += "<option value="+ response[i].equipmentName +" > " + response[i].equipmentName + " < /option>"\";
 
                     }
 
@@ -55,8 +55,8 @@
                     data: JSON.stringify(eqRequest),
                     success: function (data, textStatus, xhr) {
                         console.log(data);
-                        var url = '@Url.Action("EquipmentRequests", "TrainerHome", new{id = ViewBag.Id})';
-                        window.location.href = url;
+                        //var url = '@Url.Action("EquipmentRequests", "TrainerHome", new{id = ViewBag.Id})';
+                        //window.location.href = url;
                     },
                     error: function (response) {
                         console.log('Error in Operation' + response.responseText);
