@@ -1,5 +1,4 @@
-﻿<!DOCTYPE html>
-<html>
+﻿<html>
 <head>
     <title></title>
     <meta charset="utf-8" />
@@ -10,12 +9,19 @@
 
             $.ajax({
                 type: "GET",
-                url: "https://localhost:7298/api/EquipmentsApi",
+                url: "https://localhost:7298/api/EquipmentRequests",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (response) {
 
+                    //Clear all previous list of members
+
+
+                    //Display Asp.Net Web API response in console log
+                    //You can see console log value in developer tool
+                    //by pressing F12 function key.
                     console.log(response);
+
 
                     //Variable created to store <li>Memeber Detail</li>
                     var ListValue = "";
@@ -25,11 +31,14 @@
 
                     //Generic loop to iterate the response arrays.
                     for (i = 0; i < response.length; ++i) {
-                        // ListValue += "<tr><td>" + response[i].equipmentName + "</td><td>" + response[i].quantity + "</td></tr > "
-                        ListValue += '<tr><td>' + response[i].equipmentName + '</td><td>' + response[i].quantity   + '</td ></tr >'
+                        // ListValue += "<li>" + response[i].membershipName + " --- " + response[i].fee+" ----" + response[i].description
+                        ListValue += '<tr><td>' + response[i].id + '</td><td>' + response[i].equipmentName +  '</td ></tr >'
+
+
                     }
 
                     //Add/Append the formatted values of ListValue variable into ID called "MemberList"
+
                     $("#tbody").append(ListValue);
 
                 },
@@ -38,44 +47,43 @@
                     alert("Failure");
                 },
                 error: function (response) {
-                    alert(response);
+                    alert(response.responseText);
                     alert("Error");
                 }
             });
         });
     </script>
 </head>
+
 <body>
+
 </body>
-</html>
 
-<a asp-controller="TrainerHome" asp-action="EquipmentRequests" asp-route-id="@ViewBag.Id">Equipment Requests</a>
-<h2 class="text-decoration-underline">Equipments Available:</h2>
 
-<h2 class="text-decoration-underline text-center">Equipments Available:</h2>
-
-<br />
-<div class="c_center">
-
-<div class="container-fluid">
-     <div class="col-md-8">
-           <table class="table table-bordered bg-light border border-dark t_m_details">
+<table class="table">
     <thead>
         <tr>
             <th>
-               EquipmentName
+                RequestId
             </th>
             <th>
-               Quantity
+                Equipment Name
             </th>
+            <th>
+                Quantity
+            </th>
+            <th>
+                Reason
+            </th>
+            <th>
+                RequestStatus
+            </th>
+
+            <th></th>
         </tr>
     </thead>
     <tbody id="tbody">
     </tbody>
 </table>
-     </div>
-</div>
-</div>
-
-
+</html>
 

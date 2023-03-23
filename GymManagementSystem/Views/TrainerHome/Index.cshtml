@@ -22,7 +22,10 @@
                     console.log(response);
                     $('#name').append(response.user.fullName);
                     $('#salary').append(response.salary);
-                    $('#joiningDate').append(response.joiningDate);
+                    var dateObj = new Date(response.joiningDate);
+                    var newDate = dateObj.getDate() + "/" + dateObj.getMonth() + "/" + dateObj.getFullYear();
+
+                    $('#joiningDate').append(newDate);
 
                 },
                 failure: function (response) {

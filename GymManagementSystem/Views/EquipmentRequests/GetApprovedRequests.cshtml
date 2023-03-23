@@ -1,0 +1,101 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+
+
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $.ajax({
+                type: "GET",
+                url: "https://localhost:7298/api/EquipmentRequests/GetApprovedRequests",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+
+                    //Clear all previous list of members
+
+
+                    //Display Asp.Net Web API response in console log
+                    //You can see console log value in developer tool
+                    //by pressing F12 function key.
+                    console.log(response);
+
+
+                    //Variable created to store <li>Memeber Detail</li>
+                    var ListValue = "";
+
+                    //Variable created to iterate the json array values.
+                    var i;
+
+                    //Generic loop to iterate the response arrays.
+                    for (i = 0; i < response.length; ++i) {
+                        // ListValue += "<li>" + response[i].membershipName + " --- " + response[i].fee+" ----" + response[i].description
+                        ListValue += '<tr><td>' + response[i].id + '</td><td>' + response[i].equipmentName + '</td><td>' + '<a href="Details/' + response[i].id + '">Details</a>' + '</td ></tr >'
+
+
+                    }
+
+                    //Add/Append the formatted values of ListValue variable into ID called "MemberList"
+
+                    $("#tbody").append(ListValue);
+
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                    alert("Failure");
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                    alert("Error");
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+
+    <p>
+        <a asp-controller="EquipmentRequests" asp-action="Index" class="btn btn-dark ">New Requests</a>
+        <a asp-controller="EquipmentRequests" asp-action="GetApprovedRequests" class="btn btn-dark disabled">Approved Requests</a>
+        <a asp-controller="EquipmentRequests" asp-action="GetClosedRequests" class="btn btn-dark">Closed Requests</a>
+
+    </p>
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    RequestId
+                </th>
+                <th>
+                    Equipment Name
+                </th>
+                <th>
+                    Action
+                </th>
+
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody id="tbody">
+        </tbody>
+    </table>
+
+</body>
+</html>
+
+

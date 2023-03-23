@@ -54,10 +54,11 @@
 @{
     ViewData["Title"] = "Index";
 }
-<h2 class="text-decoration-underline">Equipment Dashboard</h2>
+
 <br />
 <p>
-    <a asp-action="Create" class="btn btn-info">Add an Equipment</a>
+    <a asp-action="Create" class="btn btn-dark">Add an Equipment</a>
+    <a asp-controller="EquipmentRequests" asp-action="Index" class="btn btn-dark">Equipment Requests</a>
 </p>
 <br />
 <table class="table table-striped m_index">

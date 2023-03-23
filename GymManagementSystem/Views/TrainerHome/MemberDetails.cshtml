@@ -25,8 +25,14 @@
                     $('#contact').append(response.user.mobileNo);
                     $('#membershipType').append(response.membership.membershipName);
                     // $('#trainer').append(response.trainer.user.neme);
-                    $('#joinDate').append(response.joinDate);
-                    $('#expiryDate').append(response.expiryDate);
+                    var dateObj = new Date(response.joinDate);
+                    var newDate = dateObj.getDate() + "/" + dateObj.getMonth() + "/" + dateObj.getFullYear();
+
+                    $('#joinDate').append(newDate);
+                     dateObj = new Date(response.expiryDate);
+                     newDate = dateObj.getDate() + "/" + dateObj.getMonth() + "/" + dateObj.getFullYear();
+
+                    $('#expiryDate').append(newDate);
 
 
 
