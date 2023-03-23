@@ -36,10 +36,12 @@
                     for (i = 0; i < response.length; ++i) {
                         console.log(response[i].id);
                         // ListValue += "<li>" + response[i].membershipName + " --- " + response[i].fee+" ----" + response[i].description
-                        ListValue += '<tr><td>' + response[i].user.fullName + '</td><td>' + '<a href="Members/Details/' + response[i].id + '" class="btn btn-dark">Details</a>' + '</td ><td>' + '<a href="Members/Edit/' + response[i].id + '" class="btn btn-warning">Edit</a>' + '</td ><td>' + '<a href="Members/Delete/' + response[i].id + '" class="btn btn-danger">Delete</a>' + '</td ></tr >'
-
+                        ListValue += '<tr><td>' + response[i].user.fullName + '</td><td>' + response[i].user.mobileNo + '</td><td>' + '<a href="Members/Details/' + response[i].id + '" class="btn btn-dark">Details</a>' + '</td ></tr >'
 
                     }
+
+                    //<td>' + '<a href="Members/Edit/' + response[i].id + '" class="btn btn-warning">Edit</a>' + '</td >
+                    //<td>' + '<a href="Members/Delete/' + response[i].id + '" class="btn btn-danger">Delete</a>' + '</td >
 
                     //Add/Append the formatted values of ListValue variable into ID called "MemberList"
                     //$("#MemberList").append(ListValue);
@@ -65,17 +67,15 @@
     @*<a class="btn btn-info" asp-area="" asp-controller="Members" asp-action="Create">add</a>
     <br />*@
     @*<a asp-action="Create">Create</a>*@
-    <table class="table">
+    <table class="table table-striped m_index">
         <thead>
             <tr>
                 <th>
                     Name
                 </th>
-                <th>
-
-                </th>
+                <th>MobileNo</th>
                 <th>Actions</th>
-                <th></th>
+                
             </tr>
         </thead>
         <tbody id="tbody">

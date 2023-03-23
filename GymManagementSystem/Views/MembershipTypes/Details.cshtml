@@ -64,6 +64,11 @@
         </dd>
     </dl>
 </div>
+<br />
+<div>
+    <a asp-controller="MembershipTypes" asp-action="Edit" asp-route-id="@ViewBag.id" class="btn btn-warning">Edit</a>
+    <a asp-controller="MembershipTypes" asp-action="Delete" asp-route-id="@ViewBag.id" class="btn btn-danger">Delete</a>
+</div>
 <hr />
 <div>
     <a asp-action="Index" class="btn btn-outline-primary">Back to List</a>
