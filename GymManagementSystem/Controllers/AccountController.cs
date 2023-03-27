@@ -125,7 +125,9 @@ namespace GymManagementSystem.Controllers
         }
 
         public ActionResult Logout2()
-        {
+        
+        
+       {
             var login = HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Login");
         }

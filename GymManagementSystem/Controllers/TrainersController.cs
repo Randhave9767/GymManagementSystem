@@ -117,7 +117,7 @@ namespace GymManagementSystem.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("GetTrainers", "Admin");
             }
             ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", trainer.UserId);
             return View(trainer);

@@ -19,9 +19,9 @@
 
                     console.log(response[0].id + " " + response[0].membershipName)
 
-                    var list = "<option value= "">Select</option>"
+                    var list = "<option value= None>Select</option>"
                     for (i = 0; i < response.length; ++i) {
-                        list += "<option value="+ response[i].equipmentName +">" + response[i].equipmentName + " < /option>";
+                        list += '<option value="'+ response[i].equipmentName +'">' + response[i].equipmentName + '</option>';
 
                     }
 
@@ -57,8 +57,8 @@
                     data: JSON.stringify(eqRequest),
                     success: function (data, textStatus, xhr) {
                         console.log(data);
-                        //var url = '@Url.Action("EquipmentRequests", "TrainerHome", new{id = ViewBag.Id})';
-                        //window.location.href = url;
+                        var url = '@Url.Action("EquipmentRequests", "TrainerHome", new{id = ViewBag.Id})';
+                        window.location.href = url;
                     },
                     error: function (response) {
                         console.log('Error in Operation' + response.responseText);
@@ -96,6 +96,7 @@
                     <input type="submit" value="Submit" id="Submit" class="btn btn-primary" />
                 </div>
             </form>
+            <a asp-action="Equipments" asp-route-id="@ViewBag.Id">Back to List</a>
         </div>
     </div>
 </body>
