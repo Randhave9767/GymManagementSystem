@@ -21,8 +21,7 @@
 
                     var list = "<option value= None>Select</option>"
                     for (i = 0; i < response.length; ++i) {
-                        
-                        list += '<option value="' + response[i].equipmentName + '">' + response[i].equipmentName + '</option>';
+                        list += '<option value="'+ response[i].equipmentName +'">' + response[i].equipmentName + '</option>';
 
                     }
 
@@ -43,10 +42,12 @@
 
                 var eqRequest = new Object();
                 eqRequest.equipmentName = $('#name').val();
+                console.log(eqRequest.equipmentName);
                 eqRequest.quantity = $('#quantity').val();
                 eqRequest.requestStatus = "Applied";
                 eqRequest.trainerId = @ViewBag.Id;
                 eqRequest.reason = $('#reason').val();
+                console.log(eqRequest.reason);
 
                 $.ajax({
                     url: 'https://localhost:7298/api/EquipmentRequests',
@@ -98,10 +99,7 @@
                     <input type="submit" value="Add" id="Submit" class="btn btn-success" />
                 </div>
             </form>
-            
-           @* <div>
-                <a asp-controller="TrainerHome" asp-action="EquipmentRequests" class="btn btn-outline-primary">Back to List</a>
-            </div>*@
+            <a asp-action="Equipments" asp-route-id="@ViewBag.Id">Back to List</a>
         </div>
     </div>
     <hr />

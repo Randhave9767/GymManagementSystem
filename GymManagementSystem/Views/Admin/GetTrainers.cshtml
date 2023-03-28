@@ -1,13 +1,21 @@
 ﻿@model IEnumerable<GymManagementSystem.Models.Trainer>
+@using System.Globalization;
 
 @{
     ViewData["Title"] = "Index";
 }
+
+<html>
+    <head>
+        
+    </head>
 <h2 class="text-decoration-underline">Trainer Dashboard</h2>
 <br />
 <a class="btn btn-info" asp-area="" asp-controller="Admin" asp-action="AddTrainer">Add new Trainer</a>
+
 <br />
 <br />
+
 <table class="table table-striped m_index">
     <thead>
         <tr">
@@ -32,18 +40,25 @@
                     @Html.DisplayFor(modelItem => item.User.FullName)
                 </td>
 
-                <td>
+                <td >
+
                     @Html.DisplayFor(modelItem => item.JoiningDate, "{0:dd/MM/yyyy}")
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.User.MobileNo)
                 </td>
                 <td>
-                    <a asp-action="GetTrainerMembers" asp-route-id="@item.Id" class="btn btn-dark">Details</a>
-
+                    <a class="btn btn-dark" href="/Admin/GetTrainerMembers/@item.Id">Details</a>
+                     @* <a asp-action="GetTrainerMembers" asp-route-id="@item.Id" class="">Details</a>
+                    <a asp-controller="EquipmentRequests" asp-action="Index" class="btn btn-dark">New Requests</a>
+*@
                 </td>
                 
             </tr>
+            
         }
     </tbody>
+    
+
 </table>
+</html>

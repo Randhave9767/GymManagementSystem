@@ -123,9 +123,14 @@
                         $('#Name').append(response.fullName);
                         $('#MobileNo').append(response.mobileNo);
                         $('#Trainer').append();
-
-                        $('#JoinDate').append(response.members[0].joinDate);
-                        $('#ExpiryDate').append(response.members[0].expiryDate);
+                        var dateObj = new Date(response.members[0].joinDate);
+                        var newDate = dateObj.getDate() + "/" + dateObj.getMonth() + "/" + dateObj.getFullYear();
+                        $('#JoinDate').append(newDate)
+                       // $('#JoinDate').append(response.members[0].joinDate);
+                        dateObj = new Date(response.members[0].expiryDate);
+                        newDate = dateObj.getDate() + "/" + dateObj.getMonth() + "/" + dateObj.getFullYear();
+                        $('#ExpiryDate').append(newDate)
+                        //$('#ExpiryDate').append(response.members[0].expiryDate);
 
 
                         }else{
