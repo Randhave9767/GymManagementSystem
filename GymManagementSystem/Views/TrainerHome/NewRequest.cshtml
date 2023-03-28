@@ -72,6 +72,8 @@
 </head>
 <body>
 
+    <h2>Add new equipment request:</h2>
+    <hr />
     <div class="row">
         <div class="col-md-4">
             <form asp-action="Create">
@@ -92,12 +94,17 @@
                     <input asp-for="Reason" class="form-control" id="reason"/>
                     <span asp-validation-for="Reason" class="text-danger"></span>
                 </div>
+                <br />
                 <div class="form-group">
-                    <input type="submit" value="Submit" id="Submit" class="btn btn-primary" />
+                    <input type="submit" value="Add" id="Submit" class="btn btn-success" />
                 </div>
             </form>
-            <a asp-action="Equipments" asp-route-id="@ViewBag.Id">Back to List</a>
+           
         </div>
     </div>
+    <hr />
+    <a asp-action="Equipments" asp-route-id="@ViewBag.Id" class="btn btn-outline-primary">Back to List</a>
+    <br />
+
 </body>
 </html>

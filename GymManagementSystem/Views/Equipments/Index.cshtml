@@ -26,7 +26,7 @@
                     //Generic loop to iterate the response arrays.
                     for (i = 0; i < response.length; ++i) {
                        // ListValue += "<tr><td>" + response[i].equipmentName + "</td><td>" + response[i].quantity + "</td></tr > "
-                        ListValue += '<tr><td>' + response[i].equipmentName + '</td><td>' + response[i].quantity + '</td><td>' + '<a href="Equipments/Edit/' + response[i].equipmentId + '" class="btn btn-warning">Edit</a>' + '</td><td>'+'<a href="Equipments/Delete/' + response[i].equipmentId + '" class="btn btn-danger">Delete</a>' + '</td ></tr >'
+                        ListValue += '<tr><td>' + response[i].equipmentName + '</td><td>' + response[i].quantity + '</td><td>' + '<a href="Equipments/Edit/' + response[i].equipmentId + '" class="btn btn-dark">Edit</a>' + '</td><td>'+'<a href="Equipments/Delete/' + response[i].equipmentId + '" class="btn btn-dark">Delete</a>' + '</td ></tr >'
                     }
 
                     //Add/Append the formatted values of ListValue variable into ID called "MemberList"
@@ -57,8 +57,8 @@
 
 <br />
 <p>
-    <a asp-action="Create" class="btn btn-dark">Add an Equipment</a>
-    <a asp-controller="EquipmentRequests" asp-action="Index" class="btn btn-dark">Equipment Requests</a>
+    <a asp-action="Create" class="btn btn-info">Add an Equipment</a>
+    <a asp-controller="EquipmentRequests" asp-action="Index" class="btn btn-info">Equipment Requests</a>
 </p>
 <br />
 <table class="table table-striped m_index">
@@ -70,8 +70,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Quantity)
             </th>
-            <th>
-            </th>
+            <th>Actions</th>
             <th>
             </th>
             

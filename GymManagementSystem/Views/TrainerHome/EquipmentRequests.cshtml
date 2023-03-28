@@ -59,12 +59,13 @@
 
 </body>
 
-<a asp-action="NewRequest" asp-route-id="@ViewBag.Id">New Request</a>
+<a asp-action="NewRequest" asp-route-id="@ViewBag.Id" class="btn btn-dark">New Request</a>
 <br></br>
-<br></br>
-<h4>Your requests</h4>
 
-<table class="table">
+<div class="m_index">
+    <br>
+<h4 class="text-decoration-underline text-center">Your requests</h4>
+<table class="table table-striped">
     <thead>
         <tr>
             <th>
@@ -83,10 +84,11 @@
                 RequestStatus
             </th>
             
-            <th></th>
         </tr>
     </thead>
     <tbody id="tbody">  
     </tbody>
 </table>
+<br />
+</div>
 </html>

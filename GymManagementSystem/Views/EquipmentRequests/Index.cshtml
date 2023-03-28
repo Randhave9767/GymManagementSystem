@@ -32,7 +32,7 @@
                     //Generic loop to iterate the response arrays.
                     for (i = 0; i < response.length; ++i) {
                         // ListValue += "<li>" + response[i].membershipName + " --- " + response[i].fee+" ----" + response[i].description
-                        ListValue += '<tr><td>' + response[i].id + '</td><td>' + response[i].equipmentName + '</td><td>' + '<a href="EquipmentRequests/Details/'+ response[i].id + '">Details</a>' +  '</td ></tr >'
+                        ListValue += '<tr><td>' + response[i].id + '</td><td>' + response[i].equipmentName + '</td><td>' + '<a href="EquipmentRequests/Details/'+ response[i].id + '" class = "btn btn-dark">Details</a>' +  '</td ></tr >'
 
 
                     }
@@ -56,15 +56,15 @@
 </head>
 
 <body>
-
+    
 <p>
         <a asp-controller="EquipmentRequests" asp-action="Index" class="btn btn-dark disabled" >New Requests</a>
         <a asp-controller="EquipmentRequests" asp-action="GetApprovedRequests"  class="btn btn-dark">Approved Requests</a>
         <a asp-controller="EquipmentRequests" asp-action="GetClosedRequests" class="btn btn-dark">Closed Requests</a>
     
 </p>
-
-<table class="table">
+<br />
+<table class="table table-striped m_index">
     <thead>
         <tr>
             <th>
@@ -77,8 +77,6 @@
                 Action
             </th>
             
-
-            <th></th>
         </tr>
     </thead>
     <tbody id="tbody">
